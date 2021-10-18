@@ -2,7 +2,7 @@ const siteMetadata = {
   title: 'GO Lee Blog',
   author: 'GO Lee',
   headerTitle: 'GO.',
-  description: 'A blog created to write everything down',
+  description: '지식과 생각을 정리합니다.',
   language: 'ko-KR',
   siteUrl: 'https://blogo-dg4vluxr5-goleedev.vercel.app/',
   siteRepo: 'https://github.com/goleedev/blogo',

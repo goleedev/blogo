@@ -1,0 +1,34 @@
+---
+title: '🖨️ Window Load Event'
+date: '2021-08-24'
+tags: ['FE', 'JavaScript']
+draft: false
+summary: 'Dealing with window load event in Javascript.'
+authors: ['default']
+---
+
+## Table of Contents
+
+```
+- Window Load Event
+```
+
+## Window Load Event
+
+The **`load`** event is fired when the whole page has loaded, including all resources.
+
+It is used to easily check if the whole page is loaded or not.
+
+```js
+window.addEventListener('load', (event) => {
+  console.log('page is fully loaded')
+})
+or
+window.onload = (event) => {
+  console.log('page is fully loaded')
+}
+```
+
+### 🔗 Reference
+
+[Window: load event](https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event)

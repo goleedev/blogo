@@ -43,26 +43,26 @@
 .token.comment,
 .token.prolog,
 .token.cdata {
-  color: rgb(99, 119, 119);
+  color: #8e8e93;
   font-style: italic;
 }
 
 .token.punctuation {
-  color: rgb(199, 146, 234);
+  color: #fee9af;
 }
 
 .namespace {
-  color: rgb(178, 204, 214);
+  color: #9daaf2;
 }
 
 .token.deleted {
-  color: rgba(239, 83, 80, 0.56);
+  color: #ff6a3d;
   font-style: italic;
 }
 
 .token.symbol,
 .token.property {
-  color: rgb(128, 203, 196);
+  color: #66d4cf;
 }
 
 .token.tag,

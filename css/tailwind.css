@@ -19,3 +19,7 @@ input:-webkit-autofill:focus {
 .cursive {
   font-family: 'Press Start 2P', cursive;
 }
+
+code {
+  color: #ffd60a !important;
+}
