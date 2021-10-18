@@ -1,10 +1,10 @@
 const siteMetadata = {
   title: 'GO Lee Blog',
   author: 'GO Lee',
-  headerTitle: 'GO Lee',
+  headerTitle: 'GO.',
   description: 'A blog created to write everything down',
   language: 'ko-KR',
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
+  siteUrl: 'https://blogo-dg4vluxr5-goleedev.vercel.app/',
   siteRepo: 'https://github.com/goleedev/blogo',
   siteLogo: '/static/images/logo.png',
   image: '/static/images/avatar.png',
@@ -18,9 +18,9 @@ const siteMetadata = {
   locale: 'ko-KR',
   analytics: {
     // supports plausible, simpleAnalytics or googleAnalytics
-    plausibleDataDomain: '', // e.g. tailwind-nextjs-starter-blog.vercel.app
+    plausibleDataDomain: 'https://blogo-dg4vluxr5-goleedev.vercel.app/', // e.g. tailwind-nextjs-starter-blog.vercel.app
     simpleAnalytics: false, // true or false
-    googleAnalyticsId: '', // e.g. UA-000000-2 or G-XXXXXXX
+    googleAnalyticsId: 'G-3FV4PPZMLG', // e.g. UA-000000-2 or G-XXXXXXX
   },
   newsletter: {
     // supports mailchimp, buttondown, convertkit

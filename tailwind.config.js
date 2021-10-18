@@ -18,9 +18,10 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Noto Sans KR', ...defaultTheme.fontFamily.sans],
+        cursive: ['Press Start 2P', 'cursive'],
       },
       colors: {
-        primary: colors.teal,
+        primary: colors.blue,
         gray: colors.trueGray,
       },
       typography: (theme) => ({

@@ -3,7 +3,7 @@ import Image from '@/components/Image'
 import { PageSEO } from '@/components/SEO'
 
 export default function AuthorLayout({ children, frontMatter }) {
-  const { name, avatar, occupation, company, email, twitter, linkedin, github } = frontMatter
+  const { name, avatar, occupation, company, email, linkedin, github } = frontMatter
 
   return (
     <>
@@ -14,8 +14,8 @@ export default function AuthorLayout({ children, frontMatter }) {
             About
           </h1>
         </div>
-        <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
-          <div className="flex flex-col items-center pt-8 space-x-2">
+        <div className="items-start">
+          <div className="flex flex-col items-center pt-14 space-x-5">
             <Image src={avatar} alt="avatar" width="192px" height="192px" className="w-48 h-48" />
             <h3 className="pt-4 pb-2 text-2xl font-bold leading-8 tracking-tight">{name}</h3>
             <div className="text-gray-500 dark:text-gray-400">{occupation}</div>
@@ -25,8 +25,8 @@ export default function AuthorLayout({ children, frontMatter }) {
               <SocialIcon kind="github" href={github} />
               <SocialIcon kind="linkedin" href={linkedin} />
             </div>
+            <div className="pt-14 prose dark:prose-dark max-w-5 justify-center">{children}</div>
           </div>
-          <div className="pt-8 pb-8 prose dark:prose-dark max-w-none xl:col-span-2">{children}</div>
         </div>
       </div>
     </>
