@@ -1,19 +1,21 @@
 const projectsData = [
   {
-    title: 'A Search Engine',
-    description: `What if you could look up any information in the world? Webpages, images, videos
-    and more. Google has many features to help you find exactly what you're looking
-    for.`,
-    imgSrc: '/static/images/google.png',
-    href: 'https://www.google.com',
+    title: 'Code Playground',
+    description: `An interactive development environment for writing and documenting code. User can execute their code in a preview window.`,
+    imgSrc: '/static/images/code-playground.png',
+    href: 'https://goleedev.github.io/code-playground/',
   },
   {
-    title: 'The Time Machine',
-    description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-    to the desired date and press "Go". No more worrying about lost keys or
-    forgotten handphones with this simple yet affordable solution.`,
-    imgSrc: '/static/images/time-machine.jpg',
-    href: '/blog/the-time-machine',
+    title: 'Ohsung Real Estate Agency',
+    description: `A paid project for Ohsung Real Estate Agency based in Cheonan. Users can search products inside the website and admin can upload and manage products.`,
+    imgSrc: '/static/images/ohsung.png',
+    href: 'https://5sungbds.com',
+  },
+  {
+    title: 'Ur Repo: Github Search App',
+    description: `A Github search app. It shows user profile and repository stats with data visualizations of the most used and the most starred languages.`,
+    imgSrc: '/static/images/ur-repo.png',
+    href: 'https://ur-repo.herokuapp.com/',
   },
 ]
 

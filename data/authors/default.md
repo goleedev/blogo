@@ -1,16 +1,15 @@
 ---
-name: Tails Azimuth
+name: GO Lee
 avatar: /static/images/avatar.png
-occupation: Professor of Atmospheric Science
-company: Stanford University
-email: address@yoursite.com
-twitter: https://twitter.com/Twitter
-linkedin: https://www.linkedin.com
-github: https://github.com
+occupation: Jr. Frontend Developer
+company: UoL
+email: golee.dev@gmail.com
+linkedin: https://www.linkedin.com/goleedev
+github: https://github.com/goleedev
 ---
 
-Tails Azimuth is a professor of atmospheric sciences at the Stanford AI Lab. His research interests includes complexity modelling of tailwinds, headwinds and crosswinds.
+정돈된 다큐멘테이션을 지향하고 새로운 기술과 트렌드를 익히는 것을 좋아하는 프론트엔드 개발자입니다.
 
-He leads the clean energy group which develops 3D air pollution-climate models, writes differential equation solvers, and manufactures titanium plated air ballons. In his free time he bakes raspberry pi.
+팀 내에서는 능동적으로 프로젝트를 수행하고 다양한 기술과 협업 능력을 쌓아가는 것을 지향점으로 삼고 있으며, 사용자에게는 가장 합리적인 디자인과 서비스를 제공하는 개발자가 되는 것을 목표로 노력하고 있습니다.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
+매일 매일 성장해야 할 책임이 있다고 믿으며, 오늘도 성장하는 개발자가 되겠습니다.
