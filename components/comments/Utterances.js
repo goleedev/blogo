@@ -33,6 +33,10 @@ const Utterances = ({ issueTerm }) => {
     }
   }, [commentsTheme, issueTerm])
 
+  useEffect(() => {
+    LoadComments()
+  }, [])
+
   // Reload on theme change
   useEffect(() => {
     const iframe = document.querySelector('iframe.utterances-frame')
@@ -43,7 +47,6 @@ const Utterances = ({ issueTerm }) => {
   // Added `relative` to fix a weird bug with `utterances-frame` position
   return (
     <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300">
-      {enableLoadComments && <button onClick={LoadComments}>Load Comments</button>}
       <div className="relative utterances-frame" id={COMMENTS_ID} />
     </div>
   )
