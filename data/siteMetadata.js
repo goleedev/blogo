@@ -55,7 +55,7 @@ const siteMetadata = {
     utterancesConfig: {
       // Visit the link below, and follow the steps in the 'configuration' section
       // https://utteranc.es/
-      repo: process.env.NEXT_PUBLIC_UTTERANCES_REPO,
+      repo: 'goleedev/blog-comment',
       issueTerm: 'pathname', // supported options: pathname, url, title
       label: '', // label (optional): Comment 💬
       // theme example: github-light, github-dark, preferred-color-scheme
