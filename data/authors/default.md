@@ -1,7 +1,7 @@
 ---
 name: GO Lee
 avatar: /static/images/avatar.png
-occupation: Jr. Frontend Developer
+occupation: Jr.Frontend Developer
 company: UoL
 email: golee.dev@gmail.com
 linkedin: https://www.linkedin.com/goleedev
