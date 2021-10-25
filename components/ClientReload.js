@@ -4,7 +4,6 @@ import Router from 'next/router'
 /**
  * Client-side complement to next-remote-watch
  * Re-triggers getStaticProps when watched mdx files change
- *
  */
 export const ClientReload = () => {
   // Exclude socket.io from prod bundle
@@ -14,6 +13,8 @@ export const ClientReload = () => {
       socket.on('reload', (data) => {
         Router.replace(Router.asPath, undefined, {
           scroll: false,
+        }).then(() => {
+          return data
         })
       })
     })
