@@ -4,7 +4,7 @@ const siteMetadata = {
   headerTitle: 'GO.',
   description: '지식과 생각을 정리합니다.',
   language: 'ko-KR',
-  siteUrl: 'https://blogo-dg4vluxr5-goleedev.vercel.app/',
+  siteUrl: 'https://www.golee.tech',
   siteRepo: 'https://github.com/goleedev/blogo',
   siteLogo: '/static/images/logo.png',
   image: '/static/images/avatar.png',
@@ -18,7 +18,7 @@ const siteMetadata = {
   locale: 'ko-KR',
   analytics: {
     // supports plausible, simpleAnalytics or googleAnalytics
-    plausibleDataDomain: 'https://blogo-dg4vluxr5-goleedev.vercel.app/', // e.g. tailwind-nextjs-starter-blog.vercel.app
+    plausibleDataDomain: 'https://www.golee.tech', // e.g. tailwind-nextjs-starter-blog.vercel.app
     simpleAnalytics: false, // true or false
     googleAnalyticsId: 'G-3FV4PPZMLG', // e.g. UA-000000-2 or G-XXXXXXX
   },
