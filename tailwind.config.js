@@ -147,6 +147,11 @@ module.exports = {
           },
         },
       }),
+      height: {
+        '50v': '50vh',
+        '70v': '70vh',
+        '100v': '100vh',
+      },
     },
   },
   variants: {
