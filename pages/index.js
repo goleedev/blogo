@@ -27,7 +27,8 @@ export default function Home({ posts }) {
           </p>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
-          {!posts.length && 'No posts found.'}
+          {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
+          {!posts.length && <li className="text-lg pt-8">🧐 검색 결과가 없습니다.</li>}
           {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
             const { slug, date, title, summary, tags } = frontMatter
             return (
