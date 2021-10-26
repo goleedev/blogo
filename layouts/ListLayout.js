@@ -56,16 +56,16 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
               <li key={slug} className="py-12">
                 <Link href={`/blog/${slug}`}>
                   <article className="space-y-2 xl:grid xl:grid-cols-4">
-                    <div className="overflow-hidden rounded-md">
+                    <div className="rounded-md overflow-hidden">
                       <Image
-                        className="rounded-md object-cover object-center"
+                        className="object-cover object-center transform scale-100 transition-all duration-300 ease-in-out hover:scale-110"
                         src={thumbSrc}
                         alt={thumbSrc}
                         blurDataURL={thumbSrc}
+                        width="100%"
+                        height="55%"
                         placeholder="blur"
                         loading="lazy"
-                        width="100%"
-                        height="50%"
                         layout="responsive"
                       />
                     </div>

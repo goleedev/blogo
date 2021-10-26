@@ -37,17 +37,19 @@ export default function Home({ posts }) {
                 <Link href={`/blog/${slug}`} className="text-gray-900 dark:text-gray-100">
                   <article>
                     <div className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0">
-                      <Image
-                        className="rounded-md overflow-hidden object-cover object-center transform scale-100 transition-transform duration-300 ease-in-out hover:scale-110"
-                        src={thumbSrc}
-                        alt={thumbSrc}
-                        blurDataURL={thumbSrc}
-                        width="100%"
-                        height="50%"
-                        placeholder="blur"
-                        loading="lazy"
-                        layout="responsive"
-                      />
+                      <div className="rounded-md overflow-hidden">
+                        <Image
+                          className="object-cover object-center transform scale-100 transition-all duration-300 ease-in-out hover:scale-110"
+                          src={thumbSrc}
+                          alt={thumbSrc}
+                          blurDataURL={thumbSrc}
+                          width="100%"
+                          height="65%"
+                          placeholder="blur"
+                          loading="lazy"
+                          layout="responsive"
+                        />
+                      </div>
                       <div className="space-y-5 xl:col-span-3 xl:ml-5">
                         <div className="space-y-6">
                           <div>
