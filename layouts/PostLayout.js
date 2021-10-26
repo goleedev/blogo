@@ -61,7 +61,9 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                       )}
                       <dl className="text-sm font-medium leading-5 whitespace-nowrap">
                         <dt className="sr-only">이름</dt>
-                        <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
+                        <dd className="text-gray-900 font-semibold dark:text-gray-100">
+                          {author.name}
+                        </dd>
                       </dl>
                     </li>
                   ))}
