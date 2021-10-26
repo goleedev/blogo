@@ -38,15 +38,15 @@ export default function Home({ posts }) {
                   <article>
                     <div className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0">
                       <Image
-                        className="rounded-md"
+                        className="rounded-md overflow-hidden object-cover object-center transform scale-100 transition-transform duration-300 ease-in-out hover:scale-110"
                         src={thumbSrc}
                         alt={thumbSrc}
+                        blurDataURL={thumbSrc}
                         width="100%"
                         height="50%"
                         placeholder="blur"
-                        blurDataURL={thumbSrc}
+                        loading="lazy"
                         layout="responsive"
-                        objectFit="cover"
                       />
                       <div className="space-y-5 xl:col-span-3 xl:ml-5">
                         <div className="space-y-6">
@@ -68,7 +68,7 @@ export default function Home({ posts }) {
                             className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                             aria-label={`Read "${title}"`}
                           >
-                            Read more &rarr;
+                            더 보기 &rarr;
                           </Link>
                         </div>
                       </div>

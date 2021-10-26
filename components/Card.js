@@ -7,9 +7,11 @@ const Card = ({ title, description, imgSrc, href }) => (
       {href ? (
         <Link href={href} aria-label={`Link to ${title}`}>
           <Image
-            alt={title}
-            src={imgSrc}
             className="object-cover object-center lg:h-48 md:h-36"
+            src={imgSrc}
+            alt={title}
+            blurDataURL={imgSrc}
+            placeholder="blur"
             width={544}
             height={306}
             style={{ minHeight: '250px' }}

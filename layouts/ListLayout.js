@@ -58,14 +58,15 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
                   <article className="space-y-2 xl:grid xl:grid-cols-4">
                     <div className="overflow-hidden rounded-md">
                       <Image
+                        className="rounded-md object-cover object-center"
                         src={thumbSrc}
                         alt={thumbSrc}
-                        placeholder="blur"
                         blurDataURL={thumbSrc}
+                        placeholder="blur"
+                        loading="lazy"
                         width="100%"
                         height="50%"
                         layout="responsive"
-                        objectFit="cover"
                       />
                     </div>
                     <div className="space-y-3 xl:col-span-3 xl:ml-5">

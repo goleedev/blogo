@@ -1,0 +1,83 @@
+---
+title: '🗄️ Abstract Data Structures'
+date: '2021-07-27'
+thumbSrc: '/static/images/medium.png'
+tags: ['CS']
+draft: false
+summary: 'Notes from UoL Course about Abstract Data Structures'
+images:
+  [
+    '/static/images/vector.png',
+    '/static/images/queue.png',
+    '/static/images/vec-queue.png',
+    '/static/images/stack.png',
+    '/static/images/queue-stack.png',
+  ]
+authors: ['default']
+---
+
+## Table of Contents
+
+```
+- Vectors
+
+- Queues
+
+- Stacks
+```
+
+## Abstract Data Structures?
+
+An abstract, mathematical model of a collection of data elements including the allowed operations on this collection
+
+### Vectors
+
+- A vector is a <mark>1) finite</mark> <mark>2) fixed size</mark> <mark>3) sequential</mark> data collection.
+
+- Construct new vector of length n = new Vector w(n)
+
+- Operations & Pseudocodes as follows:
+
+![vector](/static/images/vector.png)
+
+### Queues
+
+- The fundamental concept underlying a queue is that there is a resource,
+
+but it <mark>cannot be immediately accessed</mark>, so there needs to be a wait.
+
+- First In First Out (FIFO)
+
+- Construct new queue = new Queue q
+
+- Operations & Pseudocodes as follows:
+
+![queue](/static/images/queue.png)
+
+### Vectors VS Queues
+
+![vec-queue](/static/images/vec-queue.png)
+
+... and all elements are accessible in a vector, but a queue has only two (at most).
+
+### Stacks
+
+- A nice analogy to a stack is to think of <mark>a pile or stack of plates</mark>. Because the resource, the plates, can be smashed easily if we\'re not careful, we **add or remove plates from the pile from the top**.
+
+- Last In First Out (LIFO)
+
+- Construct new stack = new Stack s
+
+- Operations & Pseudocodes as follows:
+
+![stack](/static/images/stack.png)
+
+### Stacks VS Queues
+
+![queue-stack](/static/images/queue-stack.png)
+
+... and
+
+1. a queue is FIFO when a stack is LIFO
+
+2. two elements, the head and the tail, are accessible in the queue when only one element is accessible called the top of the stack.

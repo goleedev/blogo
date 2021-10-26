@@ -1,0 +1,56 @@
+---
+title: '⚖️ Differences between HashRouter & BrowserRouter'
+date: '2021-08-31'
+tags: ['FE', 'React']
+draft: false
+thumbSrc: '/static/images/medium.png'
+summary: 'Know what are different between routers.'
+authors: ['default']
+---
+
+## Table of Contents
+
+```
+- React Router
+
+- BrowserRouter VS HashRouter
+    - BrowserRouter
+    - HashRouter
+- Use Cases
+```
+
+## React Router
+
+React Router is the standard routing library for React.
+
+It is a collection of navigational components that compose declaratively with your application.
+
+## BrowserRouter VS HashRouter
+
+### BrowserRouter
+
+- It uses [history API](https://developer.mozilla.org/en-US/docs/Web/API/History_API).
+
+- Client-side React application is able to maintain clean routes like `example.com/react/route` but needs to be backed by web server.
+
+### HashRouter
+
+- It uses `URL hash`, it puts no limitations on supported browsers or web server.
+
+- Server-side routing is independent of client-side routing.
+
+👉 Most importantly, HashRouter use cases aren't limited to SPA.
+
+## Use Cases
+
+<mark>HashRouter</mark> - small client side applications which doesn't need backend
+
+<br />
+
+<mark>BrowserRouter</mark> - big production-ready applications which serve backend
+
+### 🔗 References
+
+[REACT ROUTER](https://reactrouter.com/)
+
+[HashRouter vs BrowserRouter](https://stackoverflow.com/questions/51974369/hashrouter-vs-browserrouter)

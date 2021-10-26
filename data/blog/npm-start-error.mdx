@@ -1,0 +1,42 @@
+---
+title: '🤾‍♀️ How to Handle NPM Start Error'
+date: '2021-08-31'
+tags: ['FE', 'React']
+draft: false
+thumbSrc: '/static/images/medium.png'
+summary: 'Dealing with npm start error'
+authors: ['default']
+---
+
+## Table of Contents
+
+```
+- NPM Start Error
+
+- How to Handle
+```
+
+## NPM Start Error
+
+```bash
+Manually installing incompatible versions is known to cause hard-to-debug issues
+.
+
+If you would prefer to ignore this check, add SKIP_PREFLIGHT_CHECK=true to an .e
+nv file in your project.
+That will permanently disable this message but you might encounter other issues.
+
+To fix the dependency tree, try following the steps below in the exact order:
+
+  1. Delete package-lock.json (not package.json!) and/or yarn.lock in your proje
+ct folder.
+  2. Delete node_modules in your project folder.
+  3. Remove "webpack" from dependencies and/or devDependencies in the package.js
+on file in your project folder.
+  4. Run npm install or yarn, depending on the package manager you use.
+```
+
+## How to Handle
+
+1. Create `.env` file on the root directory.
+2. Add `SKIP_PREFLIGHT_CHECK=true ` in the file.
