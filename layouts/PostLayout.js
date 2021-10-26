@@ -35,7 +35,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                   </dd>
                 </div>
               </dl>
-              <div>
+              <div className="pt-6 pb-8">
                 <PageTitle>{title}</PageTitle>
               </div>
             </div>
