@@ -17,6 +17,8 @@ authors: ['default']
 
 - 👷🏻 CSS의 기초
 
+- 📐 CSS 작성 팁
+
 ---
 
 ## 💁🏻 CSS란
@@ -66,6 +68,60 @@ p {
 }
 ```
 
+## 📐 CSS 작성 팁
+
+### Boolean 속성은 값을 따로 명시하지 않음
+
+selected, disabled, checked 등의 Boolean 속성은 값을 따로 명시하지 않습니다.
+
+```
+<!-- Bad -->
+<input type="text" disabled=true>
+
+<!-- Good -->
+<input type="text" disabled>
+```
+
+### 엔티티 참조는 사용하지 않음
+
+`&rdquo;`, `&#x263a;` 등의 엔티티 참조를 사용할 필요가 없습니다.
+
+```
+<!-- Bad -->
+The currency symbol for the Euro is `“&eur;”`.
+
+<!-- Good -->
+The currency symbol for the Euro is “€”.
+```
+
+### CSS/자바스크립트 파일을 불러오는 경우 `type`을 명시하지 않음
+
+type 속성의 기본값이 각각 text/css, text/javascript로 지정되어 있으므로, 따로 속성값을 명시하지 않습니디.
+
+```
+<!-- Bad -->
+<link rel="stylesheet" href="//uicdn.toast.com/tui.chart/latest/tui-chart.min.css" type="text/css">
+
+<!-- Good -->
+<link rel="stylesheet" href="//uicdn.toast.com/tui.chart/latest/tui-chart.min.css">
+
+<!-- Bad -->
+<script src="//uicdn.toast.com/tui.chart/latest/tui-chart.min.js" type="text/javascript"></script>
+
+<!-- Good -->
+<script src="//uicdn.toast.com/tui.chart/latest/tui-chart.min.js"></script>
+```
+
+### border가 없을 경우 none대신 0을 사용
+
+```
+/* Bad */
+.no-border {border: none;}
+
+/* Good */
+.no-border {border: 0;}
+```
+
 ---
 
 ### 🔗 References
@@ -73,3 +129,5 @@ p {
 [MDN CSS](https://developer.mozilla.org/ko/docs/Web/CSS)
 
 [웹 접근성과 웹 표준](https://seulbinim.github.io/WSA/css-basic.html#css%EB%9E%80)
+
+[TOAST UI HTML/CSS/SASS](https://ui.toast.com/fe-guide/ko_HTMLCSS)
