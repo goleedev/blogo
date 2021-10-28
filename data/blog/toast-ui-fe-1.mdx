@@ -1,78 +1,34 @@
 ---
-title: '🍞 FE Notes from TOAST UI 1'
+title: '🍞 TOAST FE 가이드를 보고 정리한 코딩 컨벤션과 안티패턴'
 date: '2021-10-17'
 tags: ['FE', 'JavaScript']
 draft: false
 thumbSrc: '/static/images/medium.png'
-summary: 'Taking notes from TOAST UI'
+summary: 'TOAST UI 사이트를 학습하는 중 필요한 부분에 대해 정리한 코딩 컨벤션과 안티패턴에 대한 설명힙니다.'
 authors: ['default']
 ---
 
-## Table of Contents
+## 📌 목차
 
-```
-- HTML/CSS
+- 💁🏻 코팅 컨벤션이란
 
-- Coding Convention
-```
+- 📐 코팅 컨벤션 예시
 
-## HTML/CSS
+- 🤔 안티 패턴이란
 
-### Boolean 속성은 값을 따로 명시하지 않는다.
+- 👏 안티 패턴 예시
 
-selected, disabled, checked 등의 Boolean 속성은 값을 따로 명시하지 않는다.
+---
 
-```
-<!-- Bad -->
-<input type="text" disabled=true>
+## 💁🏻 코팅 컨벤션이란
 
-<!-- Good -->
-<input type="text" disabled>
-```
+읽고, 관리하기 쉬운 코드를 작성하기 위한 일종의 `코딩 스타일 규약`을 의미합니다.
 
-### 엔티티 참조는 사용하지 않는다.
+---
 
-`&rdquo;`, `&#x263a;` 등의 엔티티 참조를 사용할 필요가 없다.
+## 📐 코팅 컨벤션 예시
 
-```
-<!-- Bad -->
-The currency symbol for the Euro is `“&eur;”`.
-
-<!-- Good -->
-The currency symbol for the Euro is “€”.
-```
-
-### CSS/자바스크립트 파일을 불러오는 경우 `type`을 명시하지 않는다.
-
-type 속성의 기본값이 각각 text/css, text/javascript로 지정되어 있으므로, 속성값을 명시하지 않는다.
-
-```
-<!-- Bad -->
-<link rel="stylesheet" href="//uicdn.toast.com/tui.chart/latest/tui-chart.min.css" type="text/css">
-
-<!-- Good -->
-<link rel="stylesheet" href="//uicdn.toast.com/tui.chart/latest/tui-chart.min.css">
-
-<!-- Bad -->
-<script src="//uicdn.toast.com/tui.chart/latest/tui-chart.min.js" type="text/javascript"></script>
-
-<!-- Good -->
-<script src="//uicdn.toast.com/tui.chart/latest/tui-chart.min.js"></script>
-```
-
-### border가 없을 경우 none대신 0을 사용한다.
-
-```
-/* Bad */
-.no-border {border: none;}
-
-/* Good */
-.no-border {border: 0;}
-```
-
-## Coding Convention
-
-### 한 줄짜리 블록일 경우라도 {}를 생략하지 않으며 명확히 줄 바꿈 하여 사용한다.
+### 한 줄짜리 블록일 경우라도 {}를 생략하지 않으며 명확히 줄 바꿈 하여 사용
 
 한 줄짜리 블록일 경우 {}를 생략할 수 있지만, 이는 코드 구조를 애매하게 만든다. 당장은 두 줄을 줄일 수 있겠지만 이후 오류 발생 확률이 높아 잠재된 위험 요소가 된다.
 
@@ -93,11 +49,11 @@ switch (value) {
 }
 ```
 
-### 함수 내에서 반환은 한 번만 한다.
+### 함수 내에서 반환은 한 번만 함
 
 특정 값을 반환해야 하는 경우, 함수 맨 마지막에서 한 번만 반환한다. 단, 예외로 빠져나가는 경우는 제외한다. 코드를 예측하기 쉬우며 흐름이 간결한 함수를 작성할 수 있다.
 
-### `return`문 바로 위는 한 칸 비워 놓는다.
+### `return`문 바로 위는 한 칸 비워 놓음
 
 다른 명령과 `return`문이 붙어있으면 가독성이 좋지 않으므로 `return`문 전에 한 줄 띄운다
 
@@ -109,6 +65,44 @@ function getResult() {
   return someDataInFalse;
 }
 ```
+
+### 새로운 이름으로 변수에 할당 할 때는 꼭 Destructuring을 사용하지 않아도 된다.
+
+```
+    <!-- Bad -->
+    const changeFirstName = user.firstName;
+
+    <!-- Good -->
+    const {firstName: changeFirstName} = user;
+```
+
+---
+
+## 🤔 안티 패턴이란
+
+소프트웨어 공학 분야 용어이며, 실제 많이 사용되지만 `비효율적이거나 비생산적인 패턴`을 뜻합니다.
+
+---
+
+## 👏 안티 패턴 예시
+
+### parseInt 10진수
+
+```
+    // 10진수로 변환하는 경우라면 'Number()'를 사용하거나 '+'연산자를 붙이는 것이 더 빠름
+    const month = Number("08");
+    const day = +"09";
+```
+
+### 배열 길이 줄이기
+
+```
+    배열 길이를 줄이고 싶다면 length를 사용
+    const numbers = ["zero", "one", "two", "three", "four", "five"];
+    numbers.length = 4; // ['zero', 'one', 'two', 'three'];
+```
+
+---
 
 ### 🔗 Reference
 
