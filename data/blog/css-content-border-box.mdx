@@ -1,0 +1,46 @@
+---
+title: '👷🏻 CSS 정리본 - CSS content-box VS border-box'
+thumbSrc: '/static/images/css5.png'
+date: '2021-05-25'
+tags: ['FE']
+draft: false
+summary: 'CSS Box Model을 학습하며 정리한 자료입니다.'
+images: ['/static/images/css5.png', '/static/images/css-box.png']
+authors: ['default']
+---
+
+## 📌 목차
+
+![CSS](/static/images/css5.png)
+
+- 💁🏻 Box Model이란
+
+- 📦 box-model 속성
+
+---
+
+## 💁🏻 Box Model이란
+
+![CSS Box Model](/static/images/css-box.png)
+
+CSS 박스 모델은 HTML 요소가 웹 페이지에서 차지하는 공간을 정의한 모델입니다.
+
+이때, 실제 요소의 내용이 담긴 부분을 content, 요소를 감싸는 경계를 border,
+
+border와 content 사이의 영역을 padding, border 바깥의 영역을 margin이라고 합니다.
+
+---
+
+## 📦 box-model 속성
+
+box-sizing 속성은 CSS의 테두리 영역의 크기를 결정하는데, box-sizing 속성 값에는 content-box와 border-box가 존재합니다.
+
+- content-box : 지정한 CSS width 및 height를 컨텐츠 영역에만 적용합니다. 이때, border, padding, margin은 따로 계산되어 전체 영역이 설정 값보다 커질 수 있습니다.
+
+- border-box : 지정한 CSS width 및 height를 전체 영역에 적용합니다. 이떄, border, padding, margin을 모두 합산하기 때문에 컨텐츠 영역이 설정 값보다 작아질 수 있습니다.
+
+---
+
+### 🔗 Reference
+
+[MDN Box Model](https://developer.mozilla.org/ko/docs/Learn/CSS/Building_blocks/The_box_model)
