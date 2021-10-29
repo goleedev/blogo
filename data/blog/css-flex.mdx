@@ -15,17 +15,19 @@ authors: ['default']
 
 - 💁🏻 CSS Flex란
 
-- ✨ Container에 적용되는 속성
+- 🗄️ CSS Flex Container 속성
+
+- 📁 CSS Flex Items 속성
 
 ---
 
 ## 💁🏻 CSS Flex란
 
-Flex란 Flexible Box 또는 Flexbox라는 뜻으로 레이아웃을 위한 기능이며,
+Flex란 Flexible Box 또는 Flexbox라는 뜻으로 1차원 레이아웃을 위한 기능이며,
 
 하나의 요소가 자신의 container가 차지하는 공간에 맞추기 위해 크기를 키우거나 줄이는 방법을 설정하는 속성입니다.
 
-Flex 레이아웃의 기본적인 구조는 아래와 같습니다.
+Flex 레이아웃 설명을 위한 HTML 구조는 아래와 같습니다.
 
 ```html
 <div class="container">
@@ -40,7 +42,7 @@ Flex 레이아웃의 기본적인 구조는 아래와 같습니다.
 
 ---
 
-## ✨ Container에 적용되는 속성
+## 🗄️ CSS Flex Container 속성
 
 ### display
 
@@ -127,8 +129,25 @@ stretch는 기본 설정으로 요소의 높이가 컨테이너의 높이와 같
 
 ---
 
+## 📁 CSS Flex Items 속성
+
+Flex Items를 위한 속성들은 다음과 같습니다.
+
+| 속성        | 의미                                            |
+| ----------- | ----------------------------------------------- |
+| order       | Flex Item의 순서를 설정                         |
+| flex        | flex-grow, flex-shrink, flex-basis의 단축 속성  |
+| flex-grow   | Flex Item의 증가 너비 비율을 설정               |
+| flex-shrink | Flex Item의 감소 너비 비율을 설정               |
+| flex-basis  | Flex Item의 (공간 배분 전) 기본 너비 설정       |
+| align-self  | 교차 축(cross-axis)에서 Item의 정렬 방법을 설정 |
+
+---
+
 ### 🔗 References
 
 [MDN flex](https://developer.mozilla.org/ko/docs/Web/CSS/flex)
 
 [TCP School](http://tcpschool.com/css/css3_expand_flexbox)
+
+[CSS Flex 완벽 가이드](https://heropy.blog/2018/11/24/css-flexible-box/)
