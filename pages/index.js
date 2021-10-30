@@ -1,9 +1,9 @@
 import Link from '@/components/Link'
-import { PageSEO } from '@/components/SEO'
 import Tag from '@/components/Tag'
-import siteMetadata from '@/data/siteMetadata'
-import { getAllFilesFrontMatter } from '@/lib/mdx'
 import Image from '@/components/Image'
+import { PageSEO } from '@/components/SEO'
+import { getAllFilesFrontMatter } from '@/lib/mdx'
+import siteMetadata from '@/data/siteMetadata'
 
 const MAX_DISPLAY = 5
 
@@ -34,8 +34,8 @@ export default function Home({ posts }) {
             const { slug, thumbSrc, title, summary, tags } = frontMatter
             return (
               <li key={slug} className="py-14 items-center">
-                <Link href={`/blog/${slug}`} className="text-gray-900 dark:text-gray-100">
-                  <article>
+                <article>
+                  <Link href={`/blog/${slug}`} className="text-gray-900 dark:text-gray-100">
                     <div className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0">
                       <div className="rounded-md overflow-hidden">
                         <Image
@@ -75,8 +75,8 @@ export default function Home({ posts }) {
                         </div>
                       </div>
                     </div>
-                  </article>
-                </Link>
+                  </Link>
+                </article>
               </li>
             )
           })}

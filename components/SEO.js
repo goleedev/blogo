@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 
 import siteMetadata from '@/data/siteMetadata'
 
-const CommonSEO = ({ title, description, ogType, ogImage, twImage }) => {
+const CommonSEO = ({ title, description, ogType, ogImage }) => {
   const router = useRouter()
   return (
     <Head>
@@ -20,42 +20,21 @@ const CommonSEO = ({ title, description, ogType, ogImage, twImage }) => {
       ) : (
         <meta property="og:image" content={ogImage} key={ogImage} />
       )}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content={siteMetadata.twitter} />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={twImage} />
     </Head>
   )
 }
 
 export const PageSEO = ({ title, description }) => {
   const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
-  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
-  return (
-    <CommonSEO
-      title={title}
-      description={description}
-      ogType="website"
-      ogImage={ogImageUrl}
-      twImage={twImageUrl}
-    />
-  )
+  return <CommonSEO title={title} description={description} ogType="website" ogImage={ogImageUrl} />
 }
 
 export const TagSEO = ({ title, description }) => {
   const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
-  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
   const router = useRouter()
   return (
     <>
-      <CommonSEO
-        title={title}
-        description={description}
-        ogType="website"
-        ogImage={ogImageUrl}
-        twImage={twImageUrl}
-      />
+      <CommonSEO title={title} description={description} ogType="website" ogImage={ogImageUrl} />
       <Head>
         <link
           rel="alternate"
@@ -124,17 +103,9 @@ export const BlogSEO = ({ authorDetails, title, summary, date, lastmod, url, ima
     description: summary,
   }
 
-  const twImageUrl = featuredImages[0].url
-
   return (
     <>
-      <CommonSEO
-        title={title}
-        description={summary}
-        ogType="article"
-        ogImage={featuredImages}
-        twImage={twImageUrl}
-      />
+      <CommonSEO title={title} description={summary} ogType="article" ogImage={featuredImages} />
       <Head>
         {date && <meta property="article:published_time" content={publishedAt} />}
         {lastmod && <meta property="article:modified_time" content={modifiedAt} />}

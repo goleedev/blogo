@@ -1,0 +1,222 @@
+---
+title: '😎 모던 자바스크립트 정리본 - 객체란'
+thumbSrc: '/static/images/js3.png'
+date: '2021-05-28'
+tags: ['JavaScript']
+draft: false
+summary: '모던 자바스크립트를 학습하며 정리한 자료로 객체에 대해 설명합니다.'
+images: ['/static/images/js3.png']
+authors: ['default']
+---
+
+## 📌 목차
+
+![JS](/static/images/js3.png)
+
+- 💁🏻 객체란
+
+- 📢 객체 구문
+
+- ✨ 객체의 특징
+
+- 🙌 객체의 종류
+
+- 🏗️ 객체의 구성
+
+- ✍️ 프로퍼티 (Property)
+
+- 🏃🏻 메소드 (Method)
+
+- 💻 객체 생성 방법
+
+- 👣 객체 접근 방법
+
+---
+
+## 💁🏻 객체란
+
+JavaScript는 객체 기반의 스크립트 언어이며, JavaScript를 이루고 있는 거의 모든 것은 객체(Object)라고 할 수 있습니다.
+
+객체란 여러 속성을 하나의 변수에 저장할 수 있도록 해주는 데이터 타입으로 Key-Value 쌍으로 저장할 수 있는 구조를 가지고 있습니다.
+
+예를 들어, `이름: GO, 성: Lee`라는 객체가 있다면, key와 value는 각각 `이름과 성` 그리고 `GO와 Lee`라고 할 수 있습니다.
+
+---
+
+## 📢 객체 구문
+
+```javascript
+var user = new Object() // "object constructor" syntax
+var user = {} // "object literal" syntax
+```
+
+객체는 위와 같은 문법으로 사용할 수 있으며, 예시의 `이름: GO, 성: Lee`는 아래와 같은 객체로 표현할 수 있습니다.
+
+```javascript
+var user = {
+  firstName: 'GO',
+  lastName: 'Lee',
+}
+```
+
+---
+
+## ✨ 객체의 특징
+
+- 객체는 변수이지만 여러 개의 값(혹은 단일 값)을 포함할 수 있습니다.
+
+- 객체는 중괄호({}) 표기를 이용하여 생성할 수 있습니다.
+
+- 객체는 각각의 key/value에 대한 정보를 나열할 수 있습니다.
+
+- Key는 문자열 또는 기호여야 하며, Value는 모든 유형이 될 수 있습니다.
+
+- 객체에서의 key/value 쌍은 쉼표를 이용하여 구분해주어야 합니다.
+
+- 변수는 예약어로 이름 붙일 수 없지만, 객체는 어떠한 이름을 가져도 상관이 없습니다.
+
+---
+
+## 🙌 객체의 종류
+
+- 배열
+- 함수
+- 객체
+- 날짜
+- 수학
+- 정규표현식
+- Boolean (new 키워드로 정의된 경우)
+- 숫자 (new 키워드로 정의된 경우)
+- 문자열 (new 키워드로 정의된 경우)
+
+> 💡 JavaScript에서 원시형 값을 제외한 나머지 값은 모두 객체이다.
+
+따라서, `string, number, boolean, null, undefined`는 객체가 아닌 기본 데이터 유형입니다.
+
+---
+
+## 🏗️ 객체의 구성
+
+ECMA Script에서는 JavaScript의 객체를 `JavaScript 내장 객체, 브라우저 내장 객체, 사용자 정의 객체`로 분류하고 있습니다.
+
+### JavaScript 내장 객체 (Built-in Object)
+
+JavaScript 엔진이 구동되는 시점에서 바로 제공되며 JavaScript 코드 어디에서든 사용이 가능합니다.
+
+### 브라우저 내장 객체 (Native Object)
+
+브라우저 내장 객체도 JavaScript 엔진이 구동되는 시점에서 바로 사용이 가능한 객체들이며 내장 객체입니다.
+
+하지만, 브라우저마다 브라우저 내장 객체를 사용하는데 구성이 다른 경우가 있기 때문에 JavaScript 내장 객체와 따로 분류되고 있습니다.
+
+브라우저 내장 객체는 브라우저, 즉 JavaScript 엔진을 구동하는 것들에서 build되는 객체들이며, 예시로는 BOM과 DOM이 있습니다.
+
+따라서, 브라우저 내장 객체는 자바스크립트 내장 객체가 구성된 후에 구성이 됩니다.
+
+### 사용자 정의 객체 (Host Object)
+
+사용자가 생성한 객체들로 생성자 함수 또는 객체 리터럴을 통해 사용자가 객체를 정의하고 확장시킨 객체입니다.
+
+따라서, 위의 내장 객체들이 먼저 구성된 이후에 구성됩니다.
+
+---
+
+## ✍️ 프로퍼티 (Property)
+
+프로퍼티는 객체의 속성을 나타내며, 접근 가능한 이름과 활용 가능한 값을 가지는 특별한 형태입니다.
+
+또한 특정 객체가 가지고 있는 정보를 포함하고 있어, 그 객체가 가진 정보에 직접적으로 접근할 수 있게 해줍니다.
+
+- key : 빈 문자열을 포함한 모든 문자열 또는 symbol 값
+- value : 모든 값
+
+```javascript
+var foo = {} // foo 객체 생성
+foo.a = 1 // . notation 이용하여 a 라는 이름의 프로퍼티를 생성하면서 1이라는 값을 할당
+var sum = foo.a + 10 // . notation을 이용하여 foo 객체의 프로퍼티 a에 접근하여 값을 활용 가능
+
+console.log(sum) // 11
+```
+
+key에 문자열이나 symbol 이 외의 값을 지정하면, 암묵적으로 타입이 문자열로 변환되며 이미 존재하는 프로퍼티 키를 중복 선언하면 나중에 선언한 프로퍼티가 먼저 선언한 프로퍼티를 덮어쓰게 됩니다.
+
+이처럼 객체는 배열과는 달리 프로퍼티를 열거할 때, 순서를 보장하지 않습니다.
+
+---
+
+## 🏃🏻 메소드 (Method)
+
+메소드란 객체가 가지고 있는 동작이며, 객체 내의 함수를 메소드라고 합니다.
+
+### 메소드 VS 함수
+
+- 메소드는 함수와 달리 객체가 가지고 있는 동작이기 때문에 메소드를 수행하기 위해서는 객체를 통해서 해당 메소드를 수행해야 합니다. 또한, 해당 동작을 수행하는 주체는 객체이다.
+
+---
+
+## 💻 객체 생성 방법
+
+### 객체 리터럴 사용
+
+객체 리터럴은 중괄호 안에 존재하는 key : value의 목록이며, 단일 객체를 정의하고 생성할 수 있습니다.
+
+```javascript
+var user = {
+  firstName: 'GO',
+  lastName: 'Lee',
+}
+```
+
+### new 키워드 사용
+
+코드를 간단하고 가독성있게 작성하며 실행 속도를 높이기 위해서는 new 키워드 보다 객체 리터럴을 활용하여 단일 객체를 생성하는 것이 권장됩니다.
+
+```javascript
+var user = new Object()
+user.firstName = 'GO'
+user.lastName = 'Lee'
+```
+
+---
+
+## 👣 객체 접근 방법
+
+### . notation (객체 프로퍼티 방식)
+
+```javascript
+var user = {
+  firstName: 'GO',
+  lastName: 'Lee',
+}
+
+var fName = user.firstName
+var lName = user.lastName
+
+console.log(fName) // 결과 : GO
+console.log(lName) // 결과 : Lee
+```
+
+### [] notation (인덱싱 방식)
+
+```javascript
+var user = {
+  firstName: 'GO',
+  lastName: 'Lee',
+}
+
+var fName = user['firstName']
+var lName = user['lastName']
+
+console.log(fName) // 결과 : GO
+console.log(lName) // 결과 : Lee
+```
+
+---
+
+### 🔗 References
+
+[MDN JavaScript](https://developer.mozilla.org/ko/docs/Learn/JavaScript/First_steps/What_is_JavaScript)
+
+[JavaScript Objects](https://www.w3schools.com/js/js_object_definition.asp)
+
+[Objects](https://javascript.info/object)
