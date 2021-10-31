@@ -1,7 +1,7 @@
 ---
-title: '🤩 Sorting Algorithm 한번에 이해하기'
+title: '👀 Sorting Algorithm 한번에 이해하기'
 thumbSrc: '/static/images/algo1.png'
-date: '2021-10-26'
+date: '2021-10-28'
 tags: ['CS']
 draft: false
 summary: '정렬 알고리즘을 학습하면서 정리한 자료로 각 정렬의 복잡도와 속도, 그리고 장단점을 설명하고 있습니다.'
@@ -33,15 +33,13 @@ authors: ['default']
 
 ## 🧼 버블 정렬 (Bubble Sort)
 
-### 설명
-
-2개의 인접한 데이터를 비교해서 앞에 있는 데이터가 뒤에 있는 데이터보다 크면 자리를 바꾸는 정렬 알고리즘입니다.
+> 2개의 인접한 데이터를 비교해서 앞에 있는 데이터가 뒤에 있는 데이터보다 크면 자리를 바꾸는 정렬 알고리즘입니다.
 
 ### 그림으로 이해하기
 
 ![Bubble 1](/static/images/bubble1.gif)
 
-![Bubble 1](/static/images/bubble2.gif)
+![Bubble 2](/static/images/bubble2.gif)
 
 ### 코드로 이해하기
 
@@ -62,15 +60,215 @@ function bblSort(arr) {
 }
 ```
 
-### 특징
+---
 
-- N개의 원소가 있는 경우 정렬은 N-1턴 일어납니다.
+## 🪙 삽입 정렬(Insertion sort)
 
-- 정렬이 1턴 일어날 때마다 가장 큰 숫자가 뒤에서 부터 1개씩 결정됩니다.
+> 삽입 정렬은 자신보다 앞의 원소가 큰지 작은지 비교를 한후 알맞은 위치를 찾아서 해당 원소를 '삽입' 하는 정렬입니다.
+> 삽입 정렬은 자신보다 앞에 위치한 원소와 비교하므로, 첫번째 index는 이미 정렬되었다고 가정하고 2번째 index부터 정렬을 시작합니다.
+> 따라서 삽입 정렬은 두 번째 원소부터 시작해서 그 앞의 원소들과 비교해 삽입할 위치를 지정한 후, 지정한 자리에 원소를 삽입해 정렬합니다.
 
-- 정렬이 1턴 일어날 때, 해당 턴 안에서 swap은 N-1-(정렬된 턴 수)번 실행되게 됩니다.
+### 그림으로 이해하기
 
-- 만약 정렬을 한 턴 실행했는데 swap이 한번도 일어나지 않은 경우, 이미 정렬된 상태이므로 로직이 일찍 종료될 수 도 있습니다.
+![Insertion 1](/static/images/insertion1.gif)
+
+![Insertion 2](/static/images/insertion2.gif)
+
+### 코드로 이해하기
+
+```javascript
+function insertionSort(arr, n) {
+  let i, key, j
+
+  for (i = 1; i < n; i++) {
+    key = arr[i]
+    j = i - 1
+
+    while (j >= 0 && arr[j] > key) {
+      arr[j + 1] = arr[j]
+      j = j - 1
+    }
+    arr[j + 1] = key
+  }
+}
+```
+
+---
+
+## 🛒 선택정렬 (Selection sort)
+
+> 선택정렬은 정렬되지 않은 데이터에서 가장 작은 값을 뽑아 가장 앞의 데이터와 교환하는 정렬 방식입니다.
+
+### 그림으로 이해하기
+
+![Selection 1](/static/images/selection1.gif)
+
+![Selection 2](/static/images/selection2.gif)
+
+### 코드로 이해하기
+
+```javascript
+function swap(arr, xp, yp) {
+  var temp = arr[xp]
+  arr[xp] = arr[yp]
+  arr[yp] = temp
+}
+
+function selectionSort(arr, n) {
+  var i, j, min_idx
+
+  for (i = 0; i < n - 1; i++) {
+    min_idx = i
+    for (j = i + 1; j < n; j++) if (arr[j] < arr[min_idx]) min_idx = j
+
+    swap(arr, min_idx, i)
+  }
+}
+```
+
+---
+
+## ⚡ 퀵 정렬 (Quick sort)
+
+> 퀵 정렬은 기준점(pivot)을 정해 기준점보다 작은 데이터는 왼쪽, 큰 데이터는 오른쪽으로 정렬하는 방식입니다.
+> 기준점의 각 왼쪽과 오른쪽에는 재귀 용법을 사용하여 상기의 작업을 반복합니다.
+
+### 그림으로 이해하기
+
+![Quick 1](/static/images/quick1.gif)
+
+### 코드로 이해하기
+
+```javascript
+function quickSort(arr) {
+  if (arr.length < 2) {
+    return arr
+  }
+
+  let pivot = [arr[0]]
+  let left = []
+  let right = []
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] < pivot) {
+      left.push(arr[i])
+    } else if (arr[i] > pivot) {
+      right.push(arr[i])
+    } else {
+      pivot.push(arr[i])
+    }
+  }
+
+  console.log(`left: ${left}, pivot: ${pivot}, right: ${right}`)
+
+  return quickSort(left).concat(pivot, quickSort(right))
+}
+```
+
+---
+
+## 🤲 병합 정렬 (Merge Sort)
+
+> 병합 정렬은 리스트를 절반으로 니느아 비슷한 크기의 두 리스트로 나눈 후, 각 리스트를 재귀적으로 병합 정렬을 이용해 정렬합니다.
+> 그 다음, 두 리스트를 다시 하나의 정렬된 리스트로 합쳐줍니다.
+
+### 그림으로 이해하기
+
+![Merge 1](/static/images/merge1.gif)
+
+### 코드로 이해하기
+
+```javascript
+const merge = function (left, right) {
+  const result = []
+  while (left.length !== 0 && right.length !== 0) {
+    left[0] <= right[0] ? result.push(left.shift()) : result.push(right.shift())
+  }
+
+  return [...result, ...left, ...right]
+}
+
+const mergeSort = function (array) {
+  if (array.length === 1) return array
+
+  const middleIndex = Math.floor(array.length / 2)
+  const left = array.slice(0, middleIndex)
+  const right = array.slice(middleIndex)
+
+  return merge(mergeSort(left), mergeSort(right))
+}
+```
+
+---
+
+## 힙 정렬 (Heap Sort)
+
+> 힙은 큰 키(우선 순위)에 자주 액세스하거나 키(우선 순위) 중심으로 정렬된 시퀀스를 활용해야 할 때 유용한 자료구조입니다.
+> 힙은 한 노드(node)가 최대 두 개의 자식노드(child node)를 가지면서, 마지막 레벨을 제외한 모든 레벨에서 노드들이 꽉 채워진 완전이진트리(complete binary tree)를 기본으로 합니다.
+
+### 그림으로 이해하기
+
+![Heap 1](/static/images/heap1.gif)
+
+### 코드로 이해하기
+
+```javascript
+const buildMaxHeap = (arr) => {
+  let i = Math.floor(arr.length / 2 - 1)
+
+  while (i >= 0) {
+    heapify(arr, i, arr.length)
+    i -= 1
+  }
+}
+
+const heapify = (heap, i, max) => {
+  let index
+  let leftChild
+  let rightChild
+
+  while (i < max) {
+    index = i
+    leftChild = 2 * i + 1
+    rightChild = leftChild + 1
+
+    if (leftChild < max && heap[leftChild] > heap[index]) {
+      index = leftChild
+    }
+
+    if (rightChild < max && heap[rightChild] > heap[index]) {
+      index = rightChild
+    }
+
+    if (index === i) {
+      return
+    }
+
+    swap(heap, i, index)
+    i = index
+  }
+}
+
+const swap = (arr, firstItemIndex, lastItemIndex) => {
+  const temp = arr[firstItemIndex]
+
+  arr[firstItemIndex] = arr[lastItemIndex]
+  arr[lastItemIndex] = temp
+}
+
+const heapSort = (arr) => {
+  buildMaxHeap(arr)
+  lastElement = arr.length - 1
+
+  while (lastElement > 0) {
+    swap(arr, 0, lastElement)
+    heapify(arr, 0, lastElement)
+    lastElement -= 1
+  }
+
+  return arr
+}
+```
 
 ---
 

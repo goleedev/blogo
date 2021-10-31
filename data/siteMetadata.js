@@ -8,7 +8,7 @@ const siteMetadata = {
   siteRepo: 'https://github.com/goleedev/blogo',
   siteLogo: '/static/images/logo.png',
   image: '/static/images/avatar.png',
-  socialBanner: '/static/images/avatar.png',
+  socialBanner: '/static/images/social-banner.png',
   email: 'golee.dev@gmail.com',
   github: 'https://github.com/goleedev',
   linkedin: 'https://www.linkedin.com/in/goleedev',
