@@ -1,0 +1,52 @@
+---
+title: '👷🏻 CSS 정리본 - 조건문 @when, @else'
+thumbSrc: '/static/images/css5.png'
+date: '2021-10-30'
+tags: ['FE']
+draft: false
+summary: 'CSS @when, @else statement를 학습하며 정리한 자료입니다.'
+images: ['/static/images/css5.png']
+authors: ['default']
+---
+
+## 📌 목차
+
+![CSS](/static/images/css5.png)
+
+- 🔙 CSS 조건문 ::before
+
+- 🆕 CSS 조건문 ::after
+
+---
+
+## 🔙 CSS 조건문 ::before
+
+지금까지 CSS에서는 해당 조건에 부합하거나 부합하지 않는 로직을 표현하지 못했습니다.
+
+하지만 이제 `@when, @else` statement이 발표되며, 조건문을 쉽게 표현할 수 있게 되었습니다.
+
+---
+
+## 🆕 CSS 조건문 ::after
+
+`@when` statement은 if statement와 동일하게, 원하는 조건을 뒤에 작성해주면 됩니다.
+
+또한, `@else` statement도 if-else의 else statement와 같이 원하는 조건을 표현해주면 됩니다.
+
+예를 들어, 조건문으로 device 크기에 따라 다른 스타일을 주고 싶다면 아래와 같이 작성해주면 됩니다.
+
+```css
+@when media(max-width: 1000px) {
+  // maybe mobile devices
+} @else media(max-width: 700px) {
+  // totally mobile
+} @else {
+  // tablets or desktops
+}
+```
+
+---
+
+### 🔗 Reference
+
+[Proposal for CSS @when](https://css-tricks.com/proposal-for-css-when/)
