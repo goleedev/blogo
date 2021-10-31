@@ -1,0 +1,51 @@
+---
+title: '🛠️ WEP - BOM이란'
+thumbSrc: '/static/images/bom.gif'
+date: '2021-05-27'
+tags: ['FE']
+draft: false
+summary: 'BOM (Browser Object Model)에 대해 학습한 내용을 정리합니다.'
+images: ['/static/images/bom.gif']
+authors: ['default']
+---
+
+## 📌 목차
+
+![DOM](/static/images/bom.gif)
+
+- 💁🏻 BOM이란
+
+- ☝️ window 객체를 통해 접근
+
+---
+
+## 💁🏻 BOM이란
+
+![BOM](/static/images/bom1.png)
+
+BOM은 Browser Object Model의 약자로 웹 브라우저의 창이나 프레임을 추상화해서 프로그래밍적으로 제어할 수 있도록 제공하는 수단입니다.
+
+DOM과 달리 BOM은 공식적인 표준이 없기에 웹 브라우저마다 BOM API가 조금씩 다를 수 있습니다.
+
+---
+
+## ☝️ window 객체를 통해 접근
+
+BOM은 자바스크립트가 브라우저와 소통하기 위해 만들어진 모델로 공식 표준이 아니더라도 브라우저 대부분이 자바스크립트와의 상호작용에 있어서 비슷한 메소드와 속성으로 동작하기에,
+
+이와 같은 메소드들을 통칭하여 BOM이라고 합니다. 이는 window 객체를 통해 접근이 가능합니다.
+
+| 이름      | 설명                                                      |
+| --------- | --------------------------------------------------------- |
+| window    | 최상위 객체로, 각 프레임 별로 하나 씩 존재함              |
+| document  | 현재 문서에 대한 정보                                     |
+| navigator | 브라우저 명과 버전 정보를 속성으로 가짐                   |
+| location  | 현재 URL에 대한 정보로 브라우저에서 사용자가 요청하는 URL |
+| history   | 현재 브라우저가 접근했던 URL history                      |
+| screen    | 브라우저의 외부 환경에 대한 정보를 제공                   |
+
+---
+
+### 🔗 Reference
+
+[JavaScript BOM](https://www.javascripttutorial.net/javascript-bom/)
