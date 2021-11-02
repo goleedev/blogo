@@ -1,0 +1,86 @@
+---
+title: '😎 모던 자바스크립트 정리본 - Hoisting(호이스팅)'
+thumbSrc: '/static/images/js7.png'
+date: '2021-06-29'
+tags: ['FE', 'JavaScript']
+draft: false
+summary: '모던 자바스크립트를 학습하며 정리한 자료로 Hoisting(호이스팅)에 대해 설명합니다.'
+images: ['/static/images/js7.png']
+authors: ['default']
+---
+
+## 📌 목차
+
+![JS Hoisting](/static/images/js7.png)
+
+- 💁🏻 호이스팅이란
+
+- 🖥️ 호이스팅 코드
+
+- ⚖️ 호이스팅의 영향여부
+
+- ✅ 호이스팅의 우선순위
+
+- 🚨 호이스팅 주의점
+
+---
+
+## 💁🏻 호이스팅이란
+
+호이스팅은 기본적으로 '끌어 올리기'라는 의미를 가지고 있지만, JavaScript에서의 호이스팅은 변수의 정의가 그 범위에 따라 선언과 할당으로 분리되는 것을 의미합니다.
+
+즉, 변수가 함수 내에서 정의되었을 경우, 선언부분만 함수의 최상위로 끌어 올려지며, 함수 바깥에서 정의되었을 경우 전역 컨텍스트의 최상위로 변경이 됩니다다
+
+---
+
+## 🖥️ 호이스팅 코드
+
+선언되지 않은 변수를 참조하는데 Reference Error가 발생하지 않고, undefined로 값이 지정된 이유는 바로 호이스팅 (Hoisting) 때문입니다.
+
+```javascript
+var a // 변수 선언부분만 끌어올려짐
+
+console.log(a) // undefined
+
+a = 1
+
+console.log(a) // 1
+```
+
+Hoisting은 쉽게 생각하여 변수를 스코프 내 최상위로 끌어올린다고 생각하면 됩니다.
+
+---
+
+## ⚖️ 호이스팅의 영향여부
+
+변수의 호이스팅이 변수 선언문 및 초기화였다면, 함수는 함수 선언문 방식일때만 호이스팅이 이루어집니다.
+
+이떄 let과 const 변수 선언에서는 호이스팅이 발생하지 않으며, 함수 선언문을 제외한 방식들은 변수 선언과 같이 함수 자체가 아직 선언이 되지 않은 것이라 오류가 발생합니다.
+
+- 함수표현식 (Function Expression): Hoisting 안됨
+- 함수선언식 (Function Declaration): Hoisting 됨
+- new Function 객체 생성의 경우: Hoisting 안됨
+- let/const 변수 선언의 경우: Hoisting 안됨
+
+---
+
+### ✅ 호이스팅의 우선순위
+
+- 같은 이름의 var 변수 선언과 함수 선언에서의 호이스팅: 변수 선언이 함수 선언보다 위로 끌어올려 집니다.
+- 값이 할당되어 있지 않은 변수와 값이 할당되어 있는 변수에서의 호이스팅: 값이 할당되어 있지 않은 변수의 경우, 함수선언문이 변수를 덮어쓰지만 값이 할당되어 있는 변수의 경우, 변수가 함수선언문을 덮어쓰는 것을 볼 수 있습니다.
+
+---
+
+## 🚨 호이스팅 주의점
+
+- 코드의 가독성과 유지보수를 위해 호이스팅이 웬만하면 일어나지 않도록 합니다.
+- 호이스팅을 제대로 모르더라도 함수와 변수를 가급적 코드 상단부에서 선언하면, 호이스팅으로 인한 스코프 꼬임 현상은 방지할 수 있습니다.
+- let 또는 const를 사용합니다.
+
+---
+
+### 🔗 References
+
+[MDN Hoisting](https://developer.mozilla.org/ko/docs/Glossary/Hoisting)
+
+[호이스팅(Hoisting)이란](https://gmlwjd9405.github.io/2019/04/22/javascript-hoisting.html)
