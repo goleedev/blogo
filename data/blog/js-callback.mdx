@@ -1,0 +1,111 @@
+---
+title: '😎 모던 자바스크립트 정리본 - 콜백이란'
+thumbSrc: '/static/images/js12.png'
+date: '2021-07-02'
+tags: ['FE', 'JavaScript']
+draft: false
+summary: '모던 자바스크립트를 학습하며 정리한 자료로 콜백에 대해 설명합니다.'
+images: ['/static/images/js12.png']
+authors: ['default']
+---
+
+## 📌 목차
+
+![JS Callback](/static/images/js12.png)
+
+- 💁🏻 콜백이란
+
+- ✨ 콜백 함수의 필요성
+
+- 👷🏻 콜백함수 생성하기
+
+---
+
+## 💁🏻 콜백이란
+
+콜백이란 다른 함수가 실행을 끝낸 뒤 실행되는, 즉 call back 되는 함수를 말합니다. 자바스크립트에서 함수는 object이기에,
+
+함수는 다른 함수의 인자로 쓰일 수도 어떤 함수에 의해 리턴될 수도 있습니다.
+
+이러한 함수를 고차 함수 higher-order functions라 부르고 인자로 넘겨지는 함수를 콜백 함수 callback function이라고 부릅니다.
+
+간단히 말해, 콜백이란 어떤 이벤트가 발생한 후 수행될 함수를 의미합니다.
+
+---
+
+## ✨ 콜백 함수의 필요성
+
+자바스크립트는 이벤트 기반 언어이기 때문에 콜백 함수가 필요합니다. 이는 자바스크립트가 다음 명령어를 실행하기 전 이전 명령어의 응답을 기다리기보단,
+
+다른 이벤트들을 기다리며 계속 명령을 수행하기 때문입니다.
+
+```javascript
+function first() {
+  console.log(1)
+}
+
+function second() {
+  console.log(2)
+}
+
+first()
+second()
+
+// 결과
+// 1
+// 2
+```
+
+결과는 예상하듯이 first()이 먼저 실행되고 second()이 그 다음에 실행되어, 1과 2라는 결과값을 리턴합니다.
+
+그런데 만약 first()가 즉시 완료될 수 없는 코드를 포함하면 이야기가 달라집니다.
+
+예를 들어 first()가 요청 request을 보낸 후 응답 response을 기다려야하는 setTimeout 함수를 포함한다면,
+
+아래와 같이 결과 값이 변경됩니다.
+
+```javascript
+function first() {
+  // Simulate a code delay
+  setTimeout(function () {
+    console.log(1)
+  }, 500)
+}
+function second() {
+  console.log(2)
+}
+
+first()
+second()
+
+// 결과
+// 2
+// 1
+```
+
+위의 코드를 보면 자바스크립트가 순서대로 함수를 수행하지 않았다는 게 아니고, first()함수로부터의 응답을 기다린 후에야 second() 함수를 수행하는 게 아니라는 것을 뜻합니다.
+
+---
+
+## 👷🏻 콜백함수 생성하기
+
+```javascript
+function doHomework(subject, callback) {
+  alert(`Starting my ${subject} homework.`)
+  callback()
+}
+function alertFinished() {
+  alert('Finished my homework')
+}
+doHomework('math', alertFinished)
+```
+
+위와 같이 doHomework 함수의 두번째 인자로 받은 alertFinished 함수가 바로 콜백 함수입니다.
+
+---
+
+### 🔗 References
+
+[MDN Callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function)
+
+[JavaScript: 도대체 콜백이 뭔데?](https://medium.com/@oasis9217/%EB%B2%88%EC%97%AD-javascript-%EB%8F%84%EB%8C%80%EC%B2%B4-%EC%BD%9C%EB%B0%B1%EC%9D%B4-%EB%AD%94%EB%8D%B0-65bb82556c56)
