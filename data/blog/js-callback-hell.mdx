@@ -1,0 +1,262 @@
+---
+title: '😎 모던 자바스크립트 정리본 - 콜백 지옥이란'
+thumbSrc: '/static/images/js13.png'
+date: '2021-07-03'
+tags: ['FE', 'JavaScript']
+draft: false
+summary: '모던 자바스크립트를 학습하며 정리한 자료로 콜백 지옥에 대해 설명합니다.'
+images: ['/static/images/js13.png']
+authors: ['default']
+---
+
+## 📌 목차
+
+![JS Callback Loop](/static/images/js13.png)
+
+- 💁🏻 콜백이란
+
+- 👿 콜백 지옥이란
+
+- 🔑 콜백 지옥 해결하기
+
+---
+
+## 💁🏻 콜백이란
+
+콜백에 대한 설명은 [😎 모던 자바스크립트 정리본 - 콜백이란](https://www.golee.tech/blog/js-callback)에서 다루고 있습니다.
+
+---
+
+## 👿 콜백 지옥이란
+
+콜백 지옥 (Callback Hell)은 콜백 함수를 익명 함수로 전달하는 과정이 반복되어 코드의 들여쓰기 수준이 감당하기 힘들정도로 깊어지는 현상을 이야기합니다.
+
+주로, 이벤트 처리나 서버 통신과 같은 비동기적인 작업을 수행하기 위해 이런 형태가 자주 등장하는데, 가독성이 떨어지면서 코드를 수정하기도 어려워집니다.
+
+콜백 지옥 코드 예시는 아래와 같습니다.
+
+```javascript
+setTimeout(
+  (name) => {
+    let coffeeList = name
+    console.log(coffeeList)
+
+    setTimeout(
+      (name) => {
+        coffeeList += ', ' + name
+        console.log(coffeeList)
+
+        setTimeout(
+          (name) => {
+            coffeeList += ', ' + name
+            console.log(coffeeList)
+
+            setTimeout(
+              (name) => {
+                coffeeList += ', ' + name
+                console.log(coffeeList)
+              },
+              500,
+              'Latte'
+            )
+          },
+          500,
+          'Mocha'
+        )
+      },
+      500,
+      'Americano'
+    )
+  },
+  500,
+  'Espresso'
+)
+
+// 결과
+// Espresso (0.5초)
+// Espresso, Americano (1.0초)
+// Espresso, Americano, Mocha (1.5초)
+// Espresso, Americano, Mocha, Latte (2.0초)
+```
+
+---
+
+## 🔑 콜백 지옥 탈출하기
+
+### 기명함수
+
+가독성 문제와 어색함을 동시에 해결하는 가장 간단한 방법은 익명의 콜백 함수를 모두 기명함수로 전환하는 것입니다.
+
+```javascript
+let coffeeList = ''
+
+const addEspresso = (name) => {
+  coffeeList = name
+  console.log(coffeeList)
+  setTimeout(addAmericano, 500, 'Americano')
+}
+
+const addAmericano = (name) => {
+  coffeeList += ', ' + name
+  console.log(coffeeList)
+  setTimeout(addMocha, 500, 'Mocha')
+}
+
+const addMocha = (name) => {
+  coffeeList += ', ' + name
+  console.log(coffeeList)
+  setTimeout(addLatte, 500, 'Latte')
+}
+
+const addLatte = (name) => {
+  coffeeList += ', ' + name
+  console.log(coffeeList)
+}
+
+setTimeout(addEspresso, 500, 'Espresso')
+```
+
+위의 코드는 익명함수를 모두 기명함수로 변경한 코드로, 이 방식은 코드의 가독성을 높일 수 있고 함수 선언과 함수 호출만 구분할 수 있다면 위에서부터 아래로 순서대로 읽는데 어려움이 없습니다.
+
+하지만, 일회성 함수를 전부 변수에 할당하는 것은 코드명을 일일이 따라다녀야 하기 때문에 오히려 헷갈림을 유발할 소지가 있습니다.
+
+ES6에도입 된 `Promise`, `Generator`, `ES2017`에 도입된 `async/await`를 통해서 콜백 지옥을 해결할 수도 있습니다.
+
+### Promise
+
+```javascript
+new Promise((resolve) => {
+  setTimeout(() => {
+    let name = 'Espresso'
+    console.log(name)
+    resolve(name)
+  }, 500)
+})
+  .then((prevName) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        let name = prevName + ', Americano'
+        console.log(name)
+        resolve(name)
+      }, 500)
+    })
+  })
+  .then((prevName) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        let name = prevName + ', Mocha'
+        console.log(name)
+        resolve(name)
+      }, 500)
+    })
+  })
+  .then((prevName) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        let name = prevName + ', Latte'
+        console.log(name)
+        resolve(name)
+      }, 500)
+    })
+  })
+```
+
+위 코드는 ES6의 Promise를 이용한 방식으로, new 연산자와 함께 호출한 Promise의 인자로 넘겨주는 콜백 함수는 호출할 때 바로 실행되지만 그 내부에 resolve 또는 reject 함수를 호출하는 구문이 있을 경우 둘 중 하나가 실행되기 전까지는 then또는 catch로 넘어가지 않습니다.
+
+따라서 비동기 작업이 완료될 때 resolve 또는 reject를 호출하는 방법으로 비동기 작업의 동기적 표현이 가능해집니다.
+
+### Promise 함수화
+
+```javascript
+const addCoffee = (name) => {
+  return (prevName) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const newName = prevName ? `${prevName}, ${name}` : name
+        console.log(newName)
+        resolve(newName)
+      }, 500)
+    })
+  }
+}
+
+addCoffee('Espresso')()
+  .then(addCoffee('Americano'))
+  .then(addCoffee('Mocha'))
+  .then(addCoffee('Latte'))
+```
+
+위 코드처럼 반복적인 내용을 함수화해서 짧게 표현할 수도 있습니다.
+
+### Generator
+
+```javascript
+const addCoffee = (prevName, name) => {
+  setTimeout(() => {
+    coffeeMaker.next(prevName ? `${prevName}, ${name}` : name)
+  }, 500)
+}
+
+const coffeeGenerator = function* () {
+  const espresso = yield addCoffee('', 'Espresso')
+  console.log(espresso)
+  const americano = yield addCoffee(espresso, 'Americano')
+  console.log(americano)
+  const mocha = yield addCoffee(americano, 'Mocha')
+  console.log(mocha)
+  const latte = yield addCoffee(mocha, 'Latte')
+  console.log(latte)
+}
+
+const coffeeMaker = coffeeGenerator()
+coffeeMaker.next()
+```
+
+위 코드는 function\* ()이런 형식으로 작성된 함수인 Generator 함수를 이용한 것으로 ES6에서 나온 함수입니다.
+
+Generator 함수를 실행하면 Iterator가 반환되는데, Iterator는 next 메소드를 가지고 있습니다.
+
+이 next 메소드를 호출하면 앞서 멈췄던 부분부터 시작해서, 그다음에 등장하는 yield에서 함수의 실행을 멈춥니다.
+
+따라서, 비동기 작업이 완료되는 시점마다 next 메소드를 호출하면 Generator 함수 내부의 소스가 위에서부터 아래로 순차적으로 진행됩니다.
+
+### Promise + async/await
+
+```javascript
+const addCoffee = (name) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(name)
+    }, 500)
+  })
+}
+
+const coffeeMaker = async () => {
+  let coffeeList = ''
+  let _addCoffee = async (name) => {
+    coffeeList += (coffeeList ? ', ' : '') + (await addCoffee(name))
+  }
+  await _addCoffee('Espresso')
+  console.log(coffeeList)
+  await _addCoffee('Americano')
+  console.log(coffeeList)
+  await _addCoffee('Mocha')
+  console.log(coffeeList)
+  await _addCoffee('Latte')
+  console.log(coffeeList)
+}
+
+coffeeMaker()
+```
+
+위 코드는 ES2017애서 추가 된 async/await를 이용한 코드로, 비동기 작업을 수행하고자 하는 함수 앞에 async를 표기하고 함수 내부에서 실직적인 비동기 작업이 필요한 위치마다 await를 표기하는 것만으로
+
+뒤의 내용을 Promise로 자동 전환하고 해당 내용이 resolve된 이후에야 다음으로 진행됩니다.
+
+---
+
+### 🔗 References
+
+[콜백 지옥 탈출하기! 비동기 처리 방법](https://hanamon.kr/javascript-%EC%BD%9C%EB%B0%B1-%EC%A7%80%EC%98%A5-%ED%83%88%EC%B6%9C%ED%95%98%EA%B8%B0-%EB%B9%84%EB%8F%99%EA%B8%B0-%EC%B2%98%EB%A6%AC-%EB%B0%A9%EB%B2%95/)
+
+[CallBack 지옥에 Promise 적용하기](https://preiner.medium.com/callback%EC%A7%80%EC%98%A5%EC%97%90-promise-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0-d02272ecbabe)
