@@ -15,15 +15,241 @@ authors: ['default']
 
 - 💁🏻 this란
 
+- ☝️ 단독으로 쓴 this
+
+- 🏃🏻 함수 안에서 쓴 this
+
+- 🤖 메소드 안에서 쓴 this
+
+- 🎉 이벤트 핸들러 안에서 쓴 this
+
+- 👾 생성자 안에서 쓴 this
+
+- 📛 명시적 바인딩을 한 this
+
+- ➡️ 화살표 함수로 쓴 this
+
 ---
 
 ## 💁🏻 this란
 
-JavaScript에서 this라는 키워드는 거의 모든 상황에서 객체이며, this의 값은 this를 사용하는 해당 함수를 어떻게 실행하느냐에 따라 값 (의미)이 바뀝니다.
+대부분의 경우, this의 값은 함수를 호출하는 방법에 의해 결정됩니다.
+
+실행하는 동안의 할당에 의해 설정될 수 없고, 함수가 호출될 때 마다 다를 수 있습니다.
 
 ---
 
-## this를 실행하는 방식
+## ☝️ 단독으로 쓴 this
+
+바로 this를 호출하는 경우엔 global object를 가리키며, 브라우저에서 호출하는 경우 [object Window]를 가리킵니다.
+
+이는 ES5에서 추가된 strict mode(엄격 모드)에서도 마찬가지로 적용됩니다.
+
+```javascript
+'use strict'
+
+var x = this
+console.log(x) //Window
+```
+
+---
+
+## 🏃🏻 함수 안에서 쓴 this
+
+함수 안에서 this는 함수의 주인인 window객체에 바인딩됩니다.
+
+```javascript
+function myFunction() {
+  return this
+}
+console.log(myFunction()) //Window
+```
+
+```javascript
+var num = 0
+function addNum() {
+  this.num = 100
+  num++
+
+  console.log(num) // 101
+  console.log(window.num) // 101
+  console.log(num === window.num) // true
+}
+
+addNum()
+```
+
+위 코드에서 this.num의 this는 window 객체를 가리키며, num은 전역 변수를 가리키게 됩니다.
+
+```javascript
+'use strict'
+
+function myFunction() {
+  return this
+}
+console.log(myFunction()) //undefined
+```
+
+```javascript
+'use strict'
+
+var num = 0
+function addNum() {
+  this.num = 100 //ERROR! Cannot set property 'num' of undefined
+  num++
+}
+
+addNum()
+```
+
+다만, 위 코드처럼 strict mode(엄격 모드)에서는 조금 다른데, 함수 내의 this에 디폴트 바인딩이 없기 때문에 undefined가 됩니다.
+
+따라서, this.num을 호출하면 undefined.num을 호출하는 것과 마찬가지기 때문에 에러가 발생합니다.
+
+---
+
+## 🤖 메소드 안에서 쓴 this
+
+메소드 호출 시, 메소드 내부 코드에서 사용된 this는 해당 메소드를 호출한 객체로 바인딩됩니다.
+
+```javascript
+var person = {
+  firstName: 'John',
+  lastName: 'Doe',
+  fullName: function () {
+    return this.firstName + ' ' + this.lastName
+  },
+}
+
+person.fullName() //"John Doe"
+```
+
+```javascript
+var num = 0
+
+function showNum() {
+  console.log(this.num)
+}
+
+showNum() //0
+
+var obj = {
+  num: 200,
+  func: showNum,
+}
+
+obj.func() //200
+```
+
+---
+
+## 🎉 이벤트 핸들러 안에서 쓴 this
+
+이벤트 핸들러에서 this는 이벤트를 받는 HTML 요소를 가리킵니다.
+
+```javascript
+var btn = document.querySelector('#btn')
+
+btn.addEventListener('click', function () {
+  console.log(this) //#btn
+})
+```
+
+---
+
+## 👾 생성자 안에서 쓴 this
+
+생성자 함수가 생성하는 객체로 this가 바인딩 됩니다.
+
+```javascript
+function Person(name) {
+  this.name = name
+}
+
+var kim = new Person('kim')
+var lee = new Person('lee')
+
+console.log(kim.name) //kim
+console.log(lee.name) //lee
+```
+
+이때, new 키워드를 빼먹으면 일반 함수 호출과 같아지기 때문에, 이 경우는 this가 window에 바인딩됩니다.
+
+```javascript
+var name = 'window'
+function Person(name) {
+  this.name = name
+}
+
+var kim = Person('kim')
+
+console.log(window.name) //kim
+```
+
+## 📛 명시적 바인딩을 한 this
+
+명시적 바인딩은 짝을 지어주는 것으로, apply와 call 메서드는 Function Object에 기본적으로 정의된 메서드입니다.
+
+이는 인자를 this로 만들어주는 기능을 합니다.
+
+```javascript
+function whoisThis() {
+  console.log(this)
+}
+
+whoisThis() //window
+
+var obj = {
+  x: 123,
+}
+
+whoisThis.call(obj) //{x:123}
+```
+
+apply()에서 매개변수로 받은 첫 번째 값은 함수 내부에서 사용되는 this에 바인딩되고,
+
+두 번째 값인 배열은 자신을 호출한 함수의 인자로 사용합니다.
+
+call()도 apply()와 거의 같지만, call()은 인자로 인수 목록을 받고 apply()는 인수 배열을 받는다는 차이가 있습니다.
+
+```javascript
+function Character(name, level) {
+  this.name = name
+  this.level = level
+}
+
+function Player(name, level, job) {
+  Character.call(this, name, level)
+  this.job = job
+}
+
+var me = {}
+Player.call(me, 'nana', 10, 'Magician')
+```
+
+---
+
+## ➡️ 화살표 함수로 쓴 this
+
+화살표 함수는 전역 컨텍스트에서 실행되더라도 this를 새로 정의하지 않고,
+
+바로 외부 함수나 클래스의 this를 쓰기 때문에 함수 안에서 this가 전역 객체가 되는 것을 방지하고 싶다면 화살표 함수를 쓰면 됩니다.
+
+```javascript
+var Person = function (name, age) {
+  this.name = name
+  this.age = age
+  this.say = function () {
+    console.log(this) // Person {name: "Nana", age: 28}
+
+    setTimeout(() => {
+      console.log(this) // Person {name: "Nana", age: 28}
+      console.log(this.name + ' is ' + this.age + ' years old')
+    }, 100)
+  }
+}
+var me = new Person('Nana', 28) //Nana is 28 years old
+```
 
 ---
 
@@ -31,4 +257,4 @@ JavaScript에서 this라는 키워드는 거의 모든 상황에서 객체이며
 
 [MDN this](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/this)
 
-[CallBack 지옥에 Promise 적용하기](https://preiner.medium.com/callback%EC%A7%80%EC%98%A5%EC%97%90-promise-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0-d02272ecbabe)
+[javascript this의 4가지 동작 방식](https://yuddomack.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-this%EC%9D%98-4%EA%B0%80%EC%A7%80-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D)
