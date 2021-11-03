@@ -1,7 +1,7 @@
 ---
-title: '😎 모던 자바스크립트 정리본 - 얕은 복사과 깊은 복사이란'
+title: '😎 자바스크립트 얕은 복사과 깊은 복사란'
 thumbSrc: '/static/images/js10.png'
-date: '2021-06-30'
+date: '2021-07-02'
 tags: ['FE', 'JavaScript']
 draft: false
 summary: '모던 자바스크립트를 학습하며 정리한 자료로 Shallow Copy와 Deep Copy에 대해 설명합니다.'
@@ -9,21 +9,21 @@ images: ['/static/images/js10.png']
 authors: ['default']
 ---
 
-## 📌 목차
+# 📌 목차
 
 ![JS Shallow Copy & Deep Copy](/static/images/js10.png)
 
-- 🚰 얕은 복사 (Shallow Copy)
+- **🚰 얕은 복사 (Shallow Copy)**
 
-- 🌊 깊은 복사 (Deep Copy)
+- **🌊 깊은 복사 (Deep Copy)**
 
-- 🏊🏻 객체의 깊은 복사
+- **🏊🏻 객체의 깊은 복사**
 
 ---
 
-## 🚰 얕은 복사 (Shallow Copy)
+# 🚰 얕은 복사 (Shallow Copy)
 
-얖은 복사는 참조 (주소)값의 복사를 나타냅니다.
+얖은 복사는 **참조 (주소)값의 복사**를 나타냅니다.
 
 ```javascript
 const obj = { vaule: 1 }
@@ -35,19 +35,19 @@ console.log(obj.vaule) // 2
 console.log(obj === newObj) // true
 ```
 
-obj 객체를 새로운 newObj 객체에 할당하였으며 이를 참조 할당이라 부릅니다.
+obj 객체를 새로운 newObj 객체에 할당하였으며 이를 `참조 할당`이라 부릅니다.
 
-복사 후 newObj 객체의 value 값을 변경하였더니 기존의 obj.value 값도 같이 변경된 것을 알 수 있습니다.
+복사 후 newObj 객체의 value 값을 변경하면 **기존의 obj.value 값도 같이 변경**되는 것을 알 수 있습니다.
 
-두 객체를 비교해도 true 값이 나오며, 이렇게 자바스크립트의 참조 타입은 얕은 복사가 된다고 볼 수 있습니다.
+두 객체를 비교해도 `true` 값이 나오며, 이렇게 자바스크립트의 **참조 타입은 얕은 복사**가 된다고 볼 수 있습니다.
 
-이는 데이터가 그대로 생성되는 것이 아닌 해당 데이터의 참조 값(메모리 주소)를 전달하여 결국 한 데이터를 공유하는 것을 말합니다.
+이는 데이터가 그대로 생성되는 것이 아닌 **해당 데이터의 참조 값 (메모리 주소)를 전달하여 결국 한 데이터를 공유하는 것**을 말합니다.
 
 ---
 
-## 🌊 깊은 복사 (Deep Copy)
+# 🌊 깊은 복사 (Deep Copy)
 
-깊은 복사는 값 자체의 복사를 나타냅니다.
+깊은 복사는 **값 자체의 복사**를 나타냅니다.
 
 ```javascript
 let a = 1
@@ -60,37 +60,37 @@ console.log(b) // 2
 console.log(a === b) // false
 ```
 
-변수 a를 새로운 b에 할당하였고 b값을 변경하여도 기존의 a의 값은 변경되지 않습니다.
+변수 a를 새로운 b에 할당하였고 **b 값을 변경하여도 기존의 a 값은 변경되지 않습니다**.
 
-두 값을 비교하면 false가 나오기에 각각의 값은 단독으로 존재하다는 것을 알 수 있습니다.
+두 값을 비교하면 `false`가 나오며 각각의 값은 **단독으로 존재**하다는 것을 알 수 있습니다.
 
-이렇게 자바스크립트의 원시 타입은 깊은 복사가 가능하며, 이는 독립적인 메모리에 값 자체를 할당하여 생성하는 것이라 볼 수 있습니다.
+이렇게 자바스크립트의 **원시 타입은 깊은 복사가 가능**하며, 이는 **독립적인 메모리에 값 자체를 할당하여 생성하는 것**이라 볼 수 있습니다.
 
 ---
 
-## 🏊🏻 객체의 깊은 복사
+# 🏊🏻 객체의 깊은 복사
 
-객체를 그대로 복사하여 사용할 경우에는 기존 객체의 원본 데이터가 덮혀쓰여 질 수 있기 때문에,
+객체를 그대로 복사하여 사용할 경우에는 기존 객체의 원본 데이터가 덮혀쓰여 질 수 있기 때문에, 객체의 깊은 복사는 매우 중요합니다.
 
-객체의 깊은 복사는 매우 중요합니다. 객체를 깊이 복사하는 방법에는 몇가지가 있는데, 그 중에서 몇가지를 소개해보겠습니다.
+객체를 깊이 복사하는 방법에는 몇가지가 있는데, 그 중에서 몇가지를 소개해보겠습니다.
 
-### Object.assign()
+## Object.assign()
 
-첫번째는 Object.assign() 메소드를 활용하는 방법입니다.
+첫번째는 `Object.assign()` 메소드를 활용하는 방법입니다.
 
-해당 방법으로 새로운 객체를 Object.assign() 메소드를 사용하여 생성하게 되면, 내부의 값을 변경하여도 기존의 객체는 변하지 않습니다.
+해당 방법으로 새로운 객체를 `Object.assign()` 메소드를 사용하여 생성하게 되면 **내부의 값을 변경하여도 기존의 객체는 변경되지 않습니다**.
 
-각각의 객체를 비교해 보아도 false가 나오며, 서로의 참조값이 다르다는 것을 알 수 있습니다.
+각각의 객체를 비교해 보아도 `false`가 나오며, **서로의 참조값이 다르다**는 것을 알 수 있습니다.
 
-단, Object.assign()는 완벽한 깊은 복사가 이루어지지 않는데, 이는 nested object가 복사되지 않기 때문입니다.
+단, `Object.assign()`는 완벽한 깊은 복사가 이루어지지 않는데, 이는 `nested object`는 깊은 복사가 되지 않기 때문입니다.
 
-### 전개 연산자 (Spread Operator)
+## 전개 연산자 (Spread Operator)
 
-전개 연산자는 Object.assign() 메소드와 같이 1차원 객체에서는 깊은 복사가 가능하지만, nested 객체에서는 얕은 복사만 이루어집니다.
+`전개 연산자`는 Object.assign() 메소드와 같이 **1차원 객체에서는 깊은 복사가 가능**하지만, **nested 객체에서는 얕은 복사**만 이루어집니다.
 
-### JSON 객체 메소드
+## JSON 객체 메소드
 
-객체의 깊은 복사를 위해 JSON 객체의 stringify(), parse() 메소드를 사용할 수 있습니다.
+객체의 깊은 복사를 위해 JSON 객체의 `stringify()`, `parse()` 메소드를 사용할 수 있습니다.
 
 ```javascript
 const obj = {
@@ -108,11 +108,9 @@ console.log(obj) // { a: 1, b: { c: 2 } }
 console.log(obj.b.c === newObj.b.c) // false
 ```
 
-obj 객체를 JSON.stringify() 메소드를 이용하여 문자열로 변환한 뒤, 다시 JSON.parse() 메소드로 객체로 변환하였는데,
+obj 객체를 `JSON.stringify()` 메소드를 이용하여 문자열로 변환한 뒤, 다시 `JSON.parse()` 메소드로 객체로 변환하였는데, 문자열로 변환한 뒤 다시 객체로 변환하였기에 **2차원 객체에 대한 참조가 사라졌습니다**.
 
-문자열로 변환한 뒤 다시 객체로 변환하였기에 2차원 객체에 대한 참조가 사라졌습니다.
-
-하지만, 이 방법도 2가지 문제가 있는데 1) 다른 방법에 비해 성능이 느리다는 점과 2) JSON.stringify() 메소드는 함수를 만났을 때 undefined로 처리된다 점입니다.
+하지만, 이 방법도 2가지 문제가 존재하는데 `1) 다른 방법에 비해 성능이 느리다는 점`과 `2) JSON.stringify() 메소드는 함수를 만났을 때 undefined로 처리된다`는 점입니다.
 
 ```javascript
 const obj = {
@@ -130,11 +128,11 @@ const newObj = JSON.parse(JSON.stringify(obj))
 console.log(newObj.func) // undefined
 ```
 
-위의 예시를 보면 복사된 newObj는 func 메소드가 존재하지 않고 undefined로 출력되고 있습니다.
+위의 예시를 보면 복사된 newObj는 func 함수가 존재하지 않고 `undefined`로 출력되고 있습니다.
 
-### 커스텀 재귀 함수
+## 커스텀 재귀 함수
 
-JSON을 활용할 때의 문제를 원칙적으로 해결하기 위해서는, 직접 깊은 복사를 구현하는 커스텀 재귀 함수를 사용할 수 있습니다.
+JSON을 활용할 때의 문제를 원칙적으로 해결하기 위해서는, **직접 깊은 복사를 구현하는 커스텀 재귀 함수**를 사용할 수 있습니다.
 
 ```javascript
 function deepCopy(obj) {
@@ -166,17 +164,17 @@ console.log(obj) // { a: 1, b: { c: 2 }, func: [Function: func] }
 console.log(obj.b.c === newObj.b.c) // false
 ```
 
-deepCopy 함수의 인수로 obj 객체를 넣었는데, 인수 값이 객체가 아닌 경우는 그냥 return 되며 객체인 경우에만 객체의 값 만큼 루프를 돌며 재귀를 호출하여 복사된 값을 반환합니다.
+deepCopy 함수의 인수로 obj 객체를 넣었는데, 인수 값이 객체가 아닌 경우는 그냥 return하게 되며 **객체인 경우에만 객체의 값 만큼 루프를 돌며 재귀를 호출하여 복사된 값을 반환**합니다.
 
-복사된 newObj 객체를 보면 2차원 객체의 값도 깊은 복사가 이루어 졌으며, 객체의 함수도 제대로 표현되는 것을 확인할 수 있습니다.
+복사된 newObj 객체를 보면 **2차원 객체의 값도 깊은 복사**가 이루어 졌으며, 객체의 함수도 제대로 표현되는 것을 확인할 수 있습니다.
 
-하지만, 이미 객체의 깊은 복사를 위한 다양한 오픈 소스가 존재하기 때문에 커스텀 함수를 이용하는 것보다 lodash 모듈의 cloneDeep()을 이용하는 것이 더욱 쉬운 방법입니다.
+하지만, 이미 객체의 깊은 복사를 위한 다양한 오픈 소스가 존재하기 때문에 **커스텀 함수를 이용하는 것보다 lodash의 cloneDeep()을 이용하는 것**이 더욱 쉬운 방법입니다.
 
-### lodash의 cloneDeep()
+## lodash의 cloneDeep()
 
-lodash의 cloneDeep() 메소드를 이용하여 객체의 깊은 복사가 가능합니다.
+lodash의 `cloneDeep()` 메소드를 이용하여 객체의 깊은 복사가 가능합니다.
 
-해당 라이브러리를 설치한 뒤 아래 코드를 실행시켜 보면 nested 객체까지 깊은 복사가 잘 이루어지는 것을 알 수 있습니다.
+해당 라이브러리를 설치한 뒤 아래 코드를 실행시켜 보면 **nested 객체까지 깊은 복사**가 잘 이루어지는 것을 알 수 있습니다.
 
 ```javascript
 const lodash = require('lodash')
@@ -202,6 +200,6 @@ console.log(obj.b.c === newObj.b.c) // false
 
 ### 🔗 References
 
-[MDN 자료형](https://developer.mozilla.org/ko/docs/Web/JavaScript/Data_structures)
+[Shallow Copy vs Deep Copy](https://dahye-jeong.gitbook.io/javascript/javascript/2020-03-18-copy)
 
-[원시타입, 참조타입(Primitive Type, Reference Type)](https://velog.io/@gillog/%EC%9B%90%EC%8B%9C%ED%83%80%EC%9E%85-%EC%B0%B8%EC%A1%B0%ED%83%80%EC%9E%85Primitive-Type-Reference-Type)
+[[JavaScript] 얕은 복사(Shallow Copy)와 깊은 복사(Deep Copy)](https://velog.io/@recordboy/JavaScript-%EC%96%95%EC%9D%80-%EB%B3%B5%EC%82%ACShallow-Copy%EC%99%80-%EA%B9%8A%EC%9D%80-%EB%B3%B5%EC%82%ACDeep-Copy)
