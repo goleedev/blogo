@@ -16,10 +16,10 @@ export default function Tags({ tags }) {
   return (
     <>
       <PageSEO title={`Tags - ${siteMetadata.author}`} description="Things I blog about" />
-      <div className="flex flex-col h-70v items-center justify-start divide-y divide-gray-200 dark:divide-gray-700 md:justify-center md:divide-y-0 md:flex-row md:space-x-6">
+      <div className="flex flex-col h-70v items-center divide-y divide-gray-200 justify-center md:divide-y-0 md:flex-row md:space-x-6 dark:divide-gray-700">
         <div className="pt-6 pb-8 space-x-2 md:space-y-5">
           {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
-          <h1 className="xl:text-6xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 md:text-4xl sm:text-3xl sm:leading-10 md:leading-14 md:border-r-2 border-gray-200 dark:border-gray-700 md:px-6">
+          <h1 className="text-4xl font-extrabold leading-9 text-gray-900 md:border-r-2 border-gray-200 md:px-6 sm:pb-3 sm:text-6xldark:text-gray-100 dark:border-gray-700">
             📂 Tags
           </h1>
         </div>
