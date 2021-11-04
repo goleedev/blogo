@@ -1,0 +1,69 @@
+---
+title: '😎 자바스크립트 참과 거짓이란'
+thumbSrc: '/static/images/js22.png'
+date: '2021-07-13'
+tags: ['FE', 'JavaScript']
+draft: false
+summary: '모던 자바스크립트를 학습하며 정리한 자료로 참과 거짓, 그리고 비교 연산자에 대해 설명합니다.'
+images: ['/static/images/js22.png']
+authors: ['default']
+---
+
+# 📌 목차
+
+![JS Truthy Falsy](/static/images/js22.png)
+
+- **✅ `true`인 값**
+
+- **❎ `false`인 값**
+
+- **⚖️ 비교연산자**
+
+---
+
+# ✅ `true`인 값
+
+- '0' (0을 포함하는 문자열)
+- 'false' (false를 포함하는 문자열)
+- `[]` (빈 배열)
+- `{}` (빈 객체)
+- `function () {}` (빈 함수)
+
+---
+
+# ❎ `false`인 값
+
+- `undefined`
+- `null`
+- 0
+- -0
+- `NaN`
+- `false`
+- ''
+- ""
+
+위에 명시된 값들을 제외한 모든 값들은 `true` 입니다.
+
+---
+
+# ⚖️ 비교연산자
+
+```
+
+// all true
+1 == '1';
+1 == [1];
+'1' == [1];
+
+// all false (유형까지 고려하여 비교)
+1 === '1';
+1 === [1];
+'1' === [1];
+
+```
+
+---
+
+### 🔗 Reference
+
+[Truthy and Falsy: When All is Not Equal in JavaScript](https://www.sitepoint.com/javascript-truthy-falsy/)
