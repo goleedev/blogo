@@ -1,0 +1,123 @@
+---
+title: '😎 자바스크립트 조건문과 반복문이란'
+thumbSrc: '/static/images/js23.png'
+date: '2021-07-14'
+tags: ['FE', 'JavaScript']
+draft: false
+summary: '모던 자바스크립트를 학습하며 정리한 자료로 조건문과 반복문에 대해 설명합니다.'
+images: ['/static/images/js23.png']
+authors: ['default']
+---
+
+# 📌 목차
+
+![JS Conditional & Loop Statement](/static/images/js23.png)
+
+- **💁🏻 조건문 종류**
+
+- **🔄 반목문 종류**
+
+---
+
+# 💁🏻 조건문 종류
+
+> 지정된 조건을 `true`, `false`로 판별하여 각 상황에 맞게 명령을 실행하도록 만드는 것을 뜻합니다.
+
+## `if`, `else if`, `else`
+
+```javascript
+const name = 'younoah'
+if (name === 'younoah') {
+  console.log('welcome, younoah!')
+} else if (name === 'coder') {
+  console.log('you are amazing coder')
+} else {
+  console.log('unknown')
+}
+```
+
+## 삼항연산자
+
+```javascript
+const flag = name === 'younoah' ? 'yse' : 'no'
+```
+
+## 널 병합 연산자
+
+```javascript
+const flag = null ?? 'default string'
+```
+
+## `switch`
+
+`switch`문은 여러 조건을 확인할때나 열거형 같은 변수를 확인할 때 사용되며, 타입을 확인할 때 사용합니다.
+
+```javascript
+const browser = 'IE'
+
+switch (browser) {
+  case 'IE':
+    console.log('go away!')
+    break
+  case 'Chrome':
+  case 'Firefox':
+    console.log('love you!')
+    break
+  default:
+    console.log('same all!')
+    break
+}
+```
+
+---
+
+# 🔄 반목문 종류
+
+> 지정된 조건을 `true`, `false`로 판별하여 각 상황에 맞게 명령을 실행하도록 만드는 것을 뜻합니다.
+
+반복문이란 프로그램 내에서 **똑같은 명령을 일정 횟수만큼 반복하여 수행하도록 제어하는 명령문**입니다.
+
+## `do-while`
+
+```javascript
+do {
+  console.log(`do while: ${i}`)
+  i--
+} while (i > 0)
+```
+
+## `for` 문
+
+```javascript
+let i
+for (i = 3; i > 0; i--) {
+  console.log(`for: ${i}`)
+}
+
+// or
+
+for (let i = 0; i < 10; i++) {
+  // i는 지역변수이다.
+  for (let j = 0; j < 10; j++) {
+    console.log(`i: ${i}, j: ${j}`)
+  }
+}
+```
+
+## `break` 와 `continue`
+
+```javascript
+// 10이하 짝수 값 출력하기
+for (let i = 0; i <= 10; i++) {
+  if (i % 2 !== 0) continue
+  console.log(`${i}`)
+}
+```
+
+---
+
+### 🔗 References
+
+[MDN 판단 내리기 — 조건문](https://developer.mozilla.org/ko/docs/Learn/JavaScript/Building_blocks/conditionals)
+
+[MDN 루프와 반복](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Loops_and_iteration)
