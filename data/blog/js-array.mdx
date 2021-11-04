@@ -1,0 +1,131 @@
+---
+title: '😎 자바스크립트 배열이란'
+thumbSrc: '/static/images/js24.png'
+date: '2021-07-15'
+tags: ['FE', 'JavaScript']
+draft: false
+summary: '모던 자바스크립트를 학습하며 정리한 자료로 배열에 대해 설명합니다.'
+images: ['/static/images/js24.png']
+authors: ['default']
+---
+
+# 📌 목차
+
+![JS Array](/static/images/js24.png)
+
+- **💁🏻 배열이란**
+
+---
+
+# 💁🏻 배열이란
+
+배열은 같은 자료들을 담는 자료구조 중의 하나로 단순하게 **같은 자료형의 나열**입니다. 물론 자바스크립트는 **다양한 자료형을 섞어서 배열**에 담을수는 있지만 실제로 혼합 형태는 잘 사용하지는 않습니다.
+
+---
+
+# 배열의 선언
+
+```javascript
+const arr1 = new Array(1, 2, 3)
+const arr2 = [1, 2, 3]
+```
+
+---
+
+# 배열의 인덱스와 길이
+
+```javascript
+const fruits = ['apple', 'banana']
+
+console.log(fruits)
+console.log(fruits.length) // 2
+console.log(fruits[0]) // apple
+console.log(fruits[2]) // banana
+console.log(fruits[1]) // undefined
+console.log(fruits[fruits.length - 1]) // banana
+```
+
+---
+
+# 배열의 반복문
+
+```javascript
+const fruits = ['apple', 'banana', 'kiwi', 'melon']
+
+// for
+for (let i = 0; i < fruits.length; i++) {
+  console.log(fruits[i])
+}
+
+// for of
+for (let fruit of fruits) {
+  console.log(fruit)
+}
+
+// forEach - 배열의 값마다 전달한 함수를 적용합니다.
+fruits.forEach(function (fruit, index, array) {
+  console.log(fruit, index, array)
+})
+
+// forEach - 화살표 함수로 단순화
+fruits.forEach((fruit, index) => console.log(fruit, index, array))
+```
+
+---
+
+# `Array`의 메서드 (일부)
+
+```javascript
+const fruits = ['apple', 'banana', 'kiwi', 'melon']
+
+// push - 배열의 가장 마지막에서부터 값을 추가합니다.
+fruits.push('pear', 'berry')
+console.log(fruits) // ['apple', 'banana', 'kiwi', 'melon', 'pear', 'berry']
+
+// pop - 배열의 가장 마지막 값을 삭제합니다.
+fruits.pop()
+console.log(fruits) // ['apple', 'banana', 'kiwi', 'melon', 'pear']
+
+// unshift와 shift 배열의 모든 아이템들을 전부 이동해야 하기 때문에 동작이 느립니다.
+// unshift - 배열의 가장 앞에서부터 값을 추가합니다.
+fruits.unshift('berry', 'grape')
+console.log(fruits) // ['berry', 'grape', 'apple', 'banana', 'kiwi', 'melon', 'pear']
+
+// shift - 배열의 가장 앞에 값을 삭제합니다.
+fruits.shift()
+console.log(fruits) // ['grape', 'apple', 'banana', 'kiwi', 'melon', 'pear']
+
+// splice - 배열에서 원하는 인덱스의 값을 삭제하거나 삭제하고 추가할 수 있습니다.
+fruits.splice(1, 1) // 인덱스 1부터 1개 삭제
+console.log(fruits) // ['grape', 'banana', 'kiwi', 'melon', 'pear']
+
+fruits.splice(3) // 인덱스 3부터 뒤로 전부 다 삭제
+console.log(fruits) // ['grape', 'banana', 'kiwi']
+
+fruits.splice(1, 1, 'grape', 'berry') // 1인덱스부터 1개 삭제하고 그 자리에 'grape', 'berry' 추가
+console.log(fruits) // ['grape', 'grape', 'berry', 'kiwi']
+
+// concat - 두개의 배열을 합칩니다.
+const fruits2 = ['coconut', 'pear']
+const newFruits = fruits.concat(fruits2) // fruits에 fruits2을 연결한다.
+console.log(newFruits) // ['grape', 'grape', 'berry', 'kiwi', 'coconut', 'pear']
+
+// indexOf - 배열에서 처음으로 발견된 값의 인덱스를 리턴합니다.
+console.log(fruts.indexOf('apple')) // 0
+console.log(fruts.indexOf('waterMelon')) // 없는 값을 입력하면 -1 리턴합니다.
+
+// lastIndexOf - 배열에서 마지막으로 발견된 값의 인덱스를 리턴합니다.
+console.log(fruts.lastIndexOf('apple')) // 3
+
+// includes - 아이템이 배열에 포함되어있으면 true, 포함이 안되어있으면 false를 리턴합니다.
+console.log(fruts.include('apple')) // true
+console.log(fruts.include('waterMelon')) // false
+```
+
+---
+
+### 🔗 References
+
+[MDN Array](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array)
+
+[배열](https://ko.javascript.info/array)
