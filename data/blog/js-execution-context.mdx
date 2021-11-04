@@ -1,0 +1,91 @@
+---
+title: '😎 자바스크립트 실행 컨텍스트란'
+thumbSrc: '/static/images/js25.png'
+date: '2021-07-16'
+tags: ['FE', 'JavaScript']
+draft: false
+summary: '모던 자바스크립트를 학습하며 정리한 자료로 실행 컨텍스트에 대해 설명합니다.'
+images: ['/static/images/js25.png']
+authors: ['default']
+---
+
+# 📌 목차
+
+![JS Execution Context](/static/images/js25.png)
+
+- **💁🏻 실행 컨텍스트란**
+
+- **🏗️ 실행 컨텍스트의 구성**
+
+---
+
+# 💁🏻 실행 컨텍스트란
+
+실행 컨텍스트는 `실행할 코드에 제공할 환경 정보들을 모아놓은 객체`이자 자바스크립트의 `동적 언어로서의 성격을 가장 잘 파악할 수 있는 개념`입니다. 자바스크립트는 실행 컨텍스트가 활성화되는 시점에 아래와 같은 현상이 발생하는데요.
+
+- **호이스팅**이 발생합니다.
+- **외부 환경 정보를 구성**합니다.
+- **`this` 값을 설정**합니다.
+
+위와 같은 현상이 발생되기에 자바스크립트에서는 다른 언어에서 발견할 수 없는 **특이한 현상들이 발생**합니다.
+
+---
+
+# 🏗️ 실행 컨텍스트의 구성
+
+실행 컨텍스트가 다음과 같은 것들을 이용하면 `call stack`에 쌓이게 됩니다.
+
+- `전역공간`은 자동으로 컨텍스트로 구성됩니다.
+- `함수`를 실행합니다.
+- `eval() 함수`를 실행합니다.
+- `block`을 만듭니다. (ES6+)
+
+일반적으로 함수를 이용한 `실행 컨텍스트`를 사용합니다.
+
+```javascript
+var a = 1 // 전역 컨텍스트
+
+function outer() {
+  // outer 컨텍스트
+  function inner() {
+    // inner 컨텍스트
+    console.log(a) // undefined
+    var a = 3
+    console.log(a) // 3
+  }
+
+  inner()
+  console.log(a) // 1
+}
+
+outer()
+console.log(a) // 1
+```
+
+위와 같은 코드를 구성했을 때 `실행 컨텍스트의 스택`은 다음과 같은 순서로 실행됩니다.
+
+- **프로그램 실행**: `전역컨텍스트`
+- **outer 실행**: `전역컨텍스트`, `outer`
+- **inner 실행**: `전역컨텍스트`, `outer`, `inner`
+- **inner 종료**: `전역컨텍스트`, `outer`
+- **outer 종료**: `전역컨텍스트`
+
+또한 이러한 실행컨텍스트를 구성할 때 생성되는 것들이 있습니다.
+
+- **VariableEnvironment**
+  - `현재 컨텍스트 내의 식별자 (변수)`들에 대한 정보
+  - `외부 환경` 정보
+  - 선언 시점의 `LexicalEnvironment의 스냅샷` (변경사항은 반영하지 않음)
+- **LexicalEnvironment**
+  - 처음에는 `VariableEnvironment`와 같음
+  - `변경 사항`이 실시간으로 반영됨
+- **ThisBinding**
+  - 식별자가 바라봐야 할 `대상 객체`
+
+---
+
+### 🔗 References
+
+[실행 컨텍스트](https://medium.com/crocusenergy/js-%EC%8B%A4%ED%96%89-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8-2b8ab8da4f4)
+
+[자바스크립트 실행 컨텍스트](https://medium.com/humanscape-tech/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8B%A4%ED%96%89-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8-1302cf139d25)
