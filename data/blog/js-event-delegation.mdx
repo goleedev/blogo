@@ -1,0 +1,56 @@
+---
+title: '😎 자바스크립트 이벤트 위임이란'
+thumbSrc: '/static/images/js20.png'
+date: '2021-07-11'
+tags: ['FE', 'JavaScript']
+draft: false
+summary: '모던 자바스크립트를 학습하며 정리한 자료로 이벤트 위임에 대해 설명합니다.'
+images: ['/static/images/js20.png']
+authors: ['default']
+---
+
+# 📌 목차
+
+![JS Event Delegation](/static/images/js20.png)
+
+- **💁🏻 이벤트 위임이란**
+
+---
+
+# 💁🏻 이벤트 위임이란
+
+앞서 작성한 [`이벤트 버블링`과 `캡쳐링`](https://www.golee.tech/blog/js-event-bubbling-capturing) 을 먼저 이해해야 `이벤트 위임`을 쉽게 이해할 수 있습니다.
+
+이벤트 위임은 실제 **바닐라 JS로 웹 앱을 구현할 때 자주 사용하게 되는 코딩 패턴**인데요. 이벤트 위임을 한 문장으로 요약해보면 **하위 요소에 각각 이벤트를 붙이지 않고 상위 요소에서 하위 요소의 이벤트들을 제어하는 방식**이라고 할 수 있습니다.
+
+위의 내용을 코드로 작성하면 아래와 같습니다.
+
+```html
+<h1>오늘의 할 일</h1>
+<ul class="itemList">
+  <li>
+    <input type="checkbox" id="item1" />
+    <label for="item1">이벤트 버블링 학습</label>
+  </li>
+  <li>
+    <input type="checkbox" id="item2" />
+    <label for="item2">이벤트 캡쳐 학습</label>
+  </li>
+</ul>
+```
+
+```javascript
+var itemList = document.querySelector('.itemList')
+
+itemList.addEventListener('click', function (event) {
+  alert('clicked')
+})
+```
+
+---
+
+### 🔗 References
+
+[이벤트 위임](https://ko.javascript.info/event-delegation)
+
+[이벤트 버블링, 이벤트 캡처 그리고 이벤트 위임까지](https://joshua1988.github.io/web-development/javascript/event-propagation-delegation/#%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EB%B2%84%EB%B8%94%EB%A7%81---event-bubbling)
