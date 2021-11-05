@@ -1,0 +1,145 @@
+---
+title: '😎 자바스크립트 커링이란'
+thumbSrc: '/static/images/js28.png'
+date: '2021-07-21'
+tags: ['FE', 'JavaScript']
+draft: false
+summary: '모던 자바스크립트를 학습하며 정리한 자료로 커링에 대해 설명합니다.'
+images: ['/static/images/js28.png']
+authors: ['default']
+---
+
+# 📌 목차
+
+![JS Curring](/static/images/js28.png)
+
+- **💁🏻 커링이란**
+
+- **🖥️ 커링 코드 예시**
+
+---
+
+# 💁🏻 커링이란
+
+커링 (currying)은 **여러 개의 인자를 가진 함수를 호출**할 경우, 파라미터의 수보다 적은 수의 파라미터를 인자로 받으면 **누락된 파라미터를 인자로 받는 기법**을 말합니다. 즉, 커링은 **함수 하나가 n개의 인자를 받는 과정을 `n개의 함수로 각각의 인자를 받도록 하는 것`** 입니다.
+
+---
+
+# 🖥️ 커링 코드 예시
+
+```javascript
+var greet = function (greeting, name) {
+  console.log(greeting + ', ' + name)
+}
+
+greet('Hello', 'GO') //"Hello, GO"
+```
+
+만약 위와 같이 인사하는 함수가 제대로 작동하려면 `greeting`과 `name`을 인자로 전달해야 합니다. 이떄 **커링을 중첨해서 함수**를 만들 수 있는데요.
+
+## 첫번째 커링함수
+
+위에 만든 함수를 수정해 `greeting(인사말)`만을 인자로 받고, **`name(이름)`을 받는 또 다른 함수를 반환**하도록 만들어 보겠습니다.
+
+```javascript
+var greetCurried = function (greeting) {
+  return function (name) {
+    console.log(greeting + ', ' + name)
+  }
+}
+```
+
+이제 `greeting`에 대한 새 함수를 생성하여, 인사할 사람 이름을 `name의 파라미터`에 넣습니다.
+
+```javascript
+var greetHello = greetCurried('Hello')
+
+greetHello('GO') //"Hello, GO"
+greetHello('GO LEE') //"Hello, GO LEE"
+```
+
+이때 두 파라미터를 바꿔 함수를 호출할 수 있으며, 그 결과는 아래와 같습니다.
+
+```javascript
+greetCurried('Hi there')('GO') //"Hi there, GO"
+```
+
+## 모두 커링하기
+
+앞에 예제를 통해 보았듯이 원하는 만큼 많은 `인자 (arguments)`를 사용해 함수를 만들어 볼 수 있는데요. 예를 들어 아래와 같은 커링 함수를 만들 수 있습니다.
+
+```javascript
+var greetDeeplyCurried = function (greeting) {
+  return function (separator) {
+    return function (emphasis) {
+      return function (name) {
+        console.log(greeting + separator + name + emphasis)
+      }
+    }
+  }
+}
+```
+
+위 예제에서는 네 개의 인자를 사용했는데, 중첩된 횟수와 상관없이 `name 파라미터`를 바꿔 새 함수를 만들어 볼 수 있습니다.
+
+```javascript
+var greetAwkwardly = greetDeeplyCurried('Hello')('...')('?')
+
+greetAwkwardly('GO') //"Hello...GO?"
+greetAwkwardly('GO LEE') //"Hello...GO LEE?"
+
+// curried 함수의 ()안 파라미터들을 바꿔 함수를 커스터마이징할 수 있습니다.
+
+var sayHello = greetDeeplyCurried('Hello')(', ')
+
+sayHello('.')('GO') //"Hello, GO."
+sayHello('.')('GO LEE') //"Hello, GO LEE."
+
+var askHello = sayHello('?')
+
+askHello('GO') //"Hello, GO?"
+askHello('GO LEE') //"Hello, GO LEE?"
+```
+
+## Currying 함수 만들기
+
+함수의 이름과 인자만 가지고 사용할 수 있는 `커링 함수`를 만들어 사용하면 됩니다. 커링 함수는 **사용되는 함수의 인자 목록을 추출해, 원본 함수에 커링**하는데요.
+
+```javascript
+var curryIt = function (uncurried) {
+  var parameters = Array.prototype.slice.call(arguments, 1)
+
+  return function () {
+    return uncurried.apply(this, parameters.concat(Array.prototype.slice.call(arguments, 0)))
+  }
+}
+```
+
+첫 번째로 지금까지 입력 받은 모든 인자를 복사합니다. `Array.slice 메소드`를 이용해 arguments의 사본을 parameters라는 변수에 저장합니다. 그리고 또한 이 추가되는 인자를 parameters에 다시 저장해야 합니다. `curryIt()` 함수 사용을 위해서는 () 내 함수 이름과 인자를 차례로 넣어 선언해야 합니다. 이떄 빠진 인자는 재선언하여 출력할 수 있습니다.
+
+```javascript
+var greeter = function (greeting, separator, emphasis, name) {
+  console.log(greeting + separator + name + emphasis)
+}
+
+var greetHello = curryIt(greeter, 'Hello', ', ', '.')
+greetHello('GO') //"Hello, GO."
+greetHello('GO LEE') //"Hello, GO LEE."
+
+// 원본 curring 함수에서 파생된 함수를 만들 때 인자의 사용은 자유롭습니다.
+var greetGoodbye = curryIt(greeter, 'Goodbye', ', ')
+
+greetGoodbye('.', 'GO') //"Goodbye, GO."
+```
+
+## 인자의 순서
+
+커링 함수에서 `인자의 순서`는 매우 중요한데요. 이떄 **앞에 있는 인자일 수록 변동 가능성이 적으며, 반대로 뒤에 있는 인자일수록 변동 가능성이 높습니다**. 그렇기 때문에 커링 함수를 사용할 때는 **인자의 순서를 고려해 코드를 설계**해야 합니다.
+
+---
+
+### 🔗 References
+
+[커링](https://ko.javascript.info/currying-partials)
+
+[초보자를 위한 함수형 자바스크립트 Currying 가이드](https://sujinlee.me/currying-in-functional-javascript/)
