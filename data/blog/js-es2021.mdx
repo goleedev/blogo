@@ -1,0 +1,145 @@
+---
+title: '😎 자바스크립트 ES2021이란'
+thumbSrc: '/static/images/js30.png'
+date: '2021-10-28'
+tags: ['FE', 'JavaScript']
+draft: false
+summary: '모던 자바스크립트를 학습하며 정리한 자료로 ES2021에 대해 설명합니다.'
+images: ['/static/images/js30.png']
+authors: ['default']
+---
+
+# 📌 목차
+
+![JS ES2021](/static/images/js30.png)
+
+- **💁🏻 ES2021이란**
+
+---
+
+# 💁🏻 ES2021이란
+
+`ES2021`은 2021년에 해당하는 `ECMAScript 버젼`입니다. 이 버젼에 ES6(2015년)에 등장한 것만큼 새로운 기능이 많이 포함되진 않았지만 **몇 가지 유용한 기능이 포함**되었습니다. 최근에 **stage-4 (최종 채택 단계)에 채택된 기능**들이 ES 깃허브에 올라왔으며, 새롭게 추가될 ES2021의 기능들을 간략하게 정리해보려고 합니다.
+
+- `String.prototype.replaceAll()`
+- `Promise.any()`
+- **WeakRef**
+- **Logical Assignment Operators** (논리 할당 연산자)
+- **Numeric Separators** (숫자 구분 기호)
+
+## `String.prototype.replaceAll()`
+
+`String.prototype.replaceAll` 메서드는 정규식의 g 옵션을 통해 전역으로 적용하지 않고도 문자열 내의 **지정한 모든 문자열을 특정 문자열의 값으로 변경**합니다.
+
+```javascript
+const baseString = 'Prograssing'
+
+// before ES12
+console.log(baseString.replace(/\s/g, 'm'))
+console.log(baseString.split('s').join(','))
+
+// ES12
+// String.prototype.replace(searchValue, replaceValue)
+console.log(baseString.replaceAll('s', 'm'))
+
+// 출력: 'Programming'
+```
+
+## `Promise.any()`
+
+`Promise.any`는 프라미스 중 하나가 이행되는 즉시 응답을 줍니다. 하지만 Promise들 중에 **하나가 거부 될 때 즉시 거부하지 않는다는 점을 제외하면 `Promise.race`와 비슷합니다**.
+
+```javascript
+const myFetch = (url) => setTimeout(() => fetch(url), Math.floor(Math.random() * 3000))
+
+const promises = [myFetch('/endpoint-1'), myFetch('/endpoint-2'), myFetch('/endpoint-3')]
+
+// .then .catch 사용
+Promise.any(promises) // 프라미스 중 하나가 이행
+  .then(console.log) // 예를 들어 '3'
+  .catch(console.error) // 모든 프라미스들이 거부됨
+
+// async-await 사용
+try {
+  const first = await Promise.any(promises) // 프라미스 중 하나가 이행
+  console.log(first)
+} catch (error) {
+  // 모든 프라미스들이 거부됨
+  console.log(error)
+}
+```
+
+## WeakRef
+
+> `WeakRef`는 가능하면 사용을 피하는 편이 가장 좋습니다.
+
+`WeakRef`는 **약한 참조 (Weak References)** 를 의미합니다. 약한 참조의 주요 용도는 **캐시 또는 대형 개체에 대한 매핑을 구현하는 것** 이며, 이러한 기능은 드물게 사용되는 캐시 또는 매핑을 저장하는데 **오랜 시간 동안 메모리를 유지하고 싶지 않은 경우** 사용합니다.
+
+즉, 자바스크립트 엔진 내에서는 **가비지 컬렉터가 끊임없이 동작하며 도달할 수 없는 객체를 메모리에서 제거**합니다. `WeakRef`를 사용하면 일반 참조가 아닌 약한 참조이기 때문에 **해당 객체에 일반 참조가 없다면 약한 참조가 있더라도 가비지 컬렉터가 자동으로 해당 객체를 메모리에서 제거**합니다.
+
+```javascript
+let user = {
+  name: 'GO',
+}
+
+const userWeekRef = new WeakRef(user)
+
+const printName = () => {
+  console.log(userWeekRef.deref().name)
+}
+
+user = null
+
+setInterval(printName, 3000)
+
+// 출력:
+// GO
+// GO
+// console.log(userWeekRef.deref().name) - TypeError: Cannot read property 'name' of undefined
+```
+
+위의 코드를 보면 우선 `let` 키워드로 user라는 변수에 `{ name: 'GO' }`라는 객체를 생성해 참조합니다. 그리고 `user`를 `userWeekRef`라는 변수에 `WeekRef`를 사용해 약한 참조를 합니다. 그 다음, `printName`이라는 함수에서 약한 참조의 `name 프로퍼티`를 출력하도록 구현합니다. 여기서 `deref()` 메서드는 약한 참조를 읽는 메서드입니다.
+
+그 후, 일반 참조를 없애기 위해 `user`에 null을 할당합니다. 이로써 `{ name: 'GO' }` 객체의 일반 참조가 모두 사라지고 약한 참조만 남게 됩니다. 그리고 `setInterval`을 통해 3초에 한번씩 `printName` 함수를 실행하도록 합니다.
+
+그 결과, 두 번째 출력까지는 정상적으로 'GO'가 출력 되다가 세 번째 출력부터 에러가 발생하는데요. 이는 일반 참조가 제거되었기 때문에 가비지 컬렉터가 해당 객체를 메모리에서 지우지만 **가비지 컬렉터가 해당 메모리를 지우는데도 시간이 걸리기 때문에 두 번째 출력까지는 메모리에 남아있다가 세 번째 출력 전에 제거**된 것입니다.
+
+## Logical Assignment Operators (논리 할당 연산자)
+
+자바스크립트에는 여러가지 논리 연산자가 있는데 그 중 세 가지 논리 연산자가 **할당 기능이 더해져 논리 할당 연산자**라는 이름이 붙여졌습니다. 이처럼 연산자에 할당 기능이 더해져 있는 연산자를 다른 이름으로는 복합 대입 연산자라고 하며 `+=`, `-=`와 같이 왼쪽의 피연산자를 오른쪽의 피연산자와 연산 후 다시 왼쪽의 피연산자에게 대입하는 문법을 말합니다.
+
+```javascript
+// before ES12
+obj.prop = obj.prop || foo() // obj.prop이 잘못된 값일 경우 할당
+obj.prop = obj.prop && foo() // obj.prop이 올바른 값일 경우 할당
+obj.prop = obj.prop ?? foo() // obj.prop이 null이나 undefined일 경우 할당
+
+// ES12
+obj.prop ||= foo()
+obj.prop &&= foo()
+obj.prop ??= foo()
+```
+
+## Numeric Separators (숫자 구분 기호)
+
+숫자 구분 기호는 `_`를 사용해 **숫자를 시각적으로 더 읽기 쉽게 만들어 주었습니다**.
+
+```javascript
+// before ES12
+10000000000 // 100억
+
+// ES12
+10_000_000_000 // 100억
+
+console.log(10_000_000_000) // 10000000000 = 100억
+```
+
+숫자가 커질수록 그리고 긴 숫자 반복이 있는 경우 육안으로 숫자를 빠르게 확인하기 어려운데, 이때 새로 추가된 `숫자 구분 기호 _`를 사용하면 **숫자 리터럴의 가독성을 향상**시키는 데 도움이 됩니다.
+
+---
+
+### 🔗 References
+
+[JavaScript ES2021 Features You Need to Know](https://towardsdev.com/javascript-es2021-features-d864eccad081)
+
+[간단한 예제로 알아보는 자바스크립트 ES2021 기능](https://ui.toast.com/weekly-pick/ko_20210202)
