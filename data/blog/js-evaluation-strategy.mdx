@@ -1,0 +1,92 @@
+---
+title: '😎 자바스크립트 평가 전략이란'
+thumbSrc: '/static/images/js33.png'
+date: '2021-07-31'
+tags: ['FE', 'JavaScript']
+draft: false
+summary: '모던 자바스크립트를 학습하며 정리한 자료로 Call by Value, Call by Reference, Call by Sharing에 대해 설명합니다.'
+images: ['/static/js33/js33.png']
+authors: ['default']
+---
+
+# 📌 목차
+
+![JS Evaluation Strategy](/static/images/js33.png)
+
+- **🔊 Call By Value란**
+
+- **🏡 Call By Reference란**
+
+- **🤲 Call By Sharing이란**
+
+---
+
+# 🔊 Call By Value란
+
+`Call By Value`는 **값에 의한 호출** 이라고도 불리며 함수 호출시 **전달되는 변수의 값을 복사하여 함수의 인자로 전달**합니다. 또한 자바스크립트에서 `Call By Value`로 호출될 경우는 매개변수가 `원시타입`일 때 입니다. 아래의 코드에서 볼 수 있듯이 함수 내부적으로 매개변수를 각각 0으로 변경해주지만 **실제 값에는 영향을 주지 않습니다**.
+
+```javascript
+function change(a, b) {
+  a = 0
+  b = 0
+}
+
+const a = 1
+const b = 2
+
+change(a, b)
+console.log(a, b)
+
+// 출력
+// 1
+// 2
+```
+
+---
+
+# 🏡 Call By Reference란
+
+`Call By Reference`는 **참조에 의한 호출** 이라고도 불리며 **함수 호출 시 해당 메모리 주소, 즉 참조 값을 인자로 전달**합니다. 또한 자바스크립트에서 `Call By Value`로 호출될 경우는 매개변수가 `Object`, `Array`, `function`일 때 입니다. 참조형 데이터의 경우는 **값에 대한 실제 복사본이 오직 하나만 존재**하며, 참조형 데이터는 그 값의 주소를 말 그대로 참조 할 **값의 복사본이나 값 자체가 할당되지 않습니다**. 이때 참조에 의해 할당된 새 변수는 **원본 변수가 가르키는 값과 동일한 값**을 가르킵니다. 즉, 원본 변수와 할당된 변수는 모두 동등하며 값을 조작하는데 사용될 수 있는데요. 따라서 **할당된 변수 (참조)가 변경되면 원본 변수에서도 동일하게 변경** 됩니다.
+
+```javascript
+const a = {
+  name: 'GO',
+  age: 20,
+}
+
+a.age = 22
+console.log(a)
+
+// 출력
+// 22
+```
+
+---
+
+# 🤲 Call By Sharing이란
+
+```javascript
+function change(a) {
+  a = null
+}
+
+const a = {
+  name: 'GO',
+  age: 20,
+}
+
+change(a)
+console.log(a)
+
+// 출력
+// { name: 'GO', age: 20 }
+```
+
+`Call By Sharing`은 `Call by Value`도 아니고 `Call by Reference`도 아닌 것으로, 원본 객체로의 접근을 공유한다는 특징을 가지고 있습니다. 이는 인자로 전달되는 변수가 원시값일 경우 `Call by Value`처럼 평가되고, 아닐 경우는 `매개 변수의 참조 (메모리 주소)`만 전달됩니다.
+이처럼 callee의 매개변수에는 caller에서 전달한 참조 (메모리 주소)만 전달되므로, callee에서 동적 프로퍼티 할당을 시도하면 **실제 객체의 프로퍼티 값은 바뀌지만 재할당을 시도하면 원본 객체가 재할당**되는 `Call by Reference`와는 다르게 우변의 값이 새로운 메모리 주소에 올라가고 좌변의 지역변수는 그 값을 가리키게 됩니다.
+
+---
+
+### 🔗 Reference
+
+[평가 전략 - Evaluation strategy](https://ko.hrvwiki.net/wiki/evaluation_strategy)
