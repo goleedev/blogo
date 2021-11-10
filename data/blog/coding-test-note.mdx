@@ -91,6 +91,7 @@ Math.sqrt() // 루트값 (제곱근)
 # 👬 배열에서 중복 제거
 
 ```javascript
+
 const array = ['a', 1, 2, 'a', 'a', 3]
 
 // 1: 'Set'
@@ -111,6 +112,7 @@ array.forEach((element) => {
 
 // RESULT:
 // ['a', 1, 2, 3]
+
 ```
 
 ---
@@ -185,8 +187,7 @@ array.indexOf('item')
 # 🔢 문자열을 정수로 변환
 
 ```javascript
-parseInt(str)
-;+str
+parseInt(str) + str
 str * 1
 str / 1
 Number(str)
@@ -200,6 +201,7 @@ Number(str)
 Array(n)
   .fill()
   .map((v, i) => i + 1)
+
 // 출력: [1,2,3,...,n]
 ```
 
@@ -208,7 +210,8 @@ Array(n)
 # 🤲 배열 내용 모두 합산
 
 ```javascript
-array.reduce((acc, cur) => acc + +cur, 0)
+array.reduce((acc, cur) => acc + cur, 0)
+array.reduce((acc, cur) => (acc += cur))
 ```
 
 ---
