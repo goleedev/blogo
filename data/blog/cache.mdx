@@ -1,0 +1,50 @@
+---
+title: '🌐 WEB - Cache란'
+thumbSrc: '/static/images/cache.png'
+date: '2021-08-16'
+tags: ['FE']
+draft: false
+summary: 'Cache에 대해 학습한 내용을 정리합니다.'
+images: ['/static/images/cache.png']
+authors: ['default']
+---
+
+# 📌 목차
+
+![Cache](/static/images/cache.png)
+
+- **💁🏻 Cache란**
+
+- **⚖️ Local Cache와 Global Cache**
+
+---
+
+# 💁🏻 Cache란
+
+Cache란 **자주 사용하는 데이터나 값을 미리 복사해 놓는 임시 장소**를 가리킵니다. 이는 아래의 그림과 같은 **저장공간 계층 구조**에서 확인할 수 있듯이, 캐시는 **저장 공간이 작고 비용이 비싼 대신 빠른 성능**을 제공합니다.
+
+![Cache](/static/images/cache2.png)
+
+따라서 Cache는 아래와 같은 경우에 사용을 고려하면 좋습니다.
+
+- 접근 시간에 비해 원래 **데이터를 접근하는 시간이 오래 걸리는 경우**
+
+- 이미지 등과 같이 반복적으로 **동일한 결과를 돌려주는 경우**
+
+---
+
+# ⚖️ Local Cache와 Global Cache
+
+## Local Cache
+
+Local Cache는 **장비 내에서만 사용되는 캐시**로, Local 장비의 Resource를 이용합니다. 이처럼 Local Cache는 Local에서만 작동하기 때문에 **속도가 빠르지만**, 반대로 Local에서만 작동하기 때문에 **다른 서버와 데이터 공유가 어렵습니다**.
+
+## Global Cache
+
+Global Cache는 여러 서버에서 **Cache Server에 접근하여 사용하는 캐시**로, **분산된 서버에서 데이터를 저장하고 조회**할 수 있습니다. 이때 네트워크를 통해 데이터를 가져오므로, Local Cache에 비해 **상대적으로 속도가 느립니다**. 하지만 별도의 Cache 서버를 이용하기 때문에 **서버 간의 데이터 공유가 쉽습니다**.
+
+---
+
+### 🔗 Reference
+
+[[Network] TCP / UDP의 개념과 특징, 차이점](https://coding-factory.tistory.com/614)
