@@ -13,6 +13,9 @@ const siteMetadata = {
   github: 'https://github.com/goleedev',
   linkedin: 'https://www.linkedin.com/in/goleedev',
   locale: 'ko-KR',
+  analytics: {
+    googleAnalyticsId: 'G-3FV4PPZMLG',
+  },
   comment: {
     provider: 'utterances',
     utterancesConfig: {
