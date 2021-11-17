@@ -1,0 +1,123 @@
+---
+title: '🖌️ 리액트 Context API란'
+thumbSrc: '/static/images/react3.png'
+date: '2021-08-20'
+tags: ['FE', 'React']
+draft: false
+summary: '리액트 Context API를 학습하며 정리한 자료에 대해 설명합니다.'
+images: ['/static/images/react3.png']
+authors: ['default']
+---
+
+# 📌 목차
+
+![React Context API](/static/images/react3.png)
+
+- **💁🏻 일반적인 전역 상태관리**
+
+- **🌊 Context API를 사용한 전역 상태 관리 흐름**
+
+---
+
+# 💁🏻 일반적인 전역 상태관리
+
+![일반적인 전역 상태관리](/static/images/context1.png)
+
+_Source: `VELOPERT.LOG`_
+
+일반적으로 **전역적으로 필요한 상태 (환경설정, 사용자 정보)를 관리**해야 할때는 최상위 컴포넌트인 `App`의 `state`에 넣고 컴포넌트 간에 `props`로 전달합니다.
+
+## 예시
+
+만약 `G 컴포넌트`는 전역 상태를 업데이트 시키고, `F와 J 컴포넌트`는 업데이트된 상태를 렌더링합니다.
+
+```javascript
+const [cvalue, setValue] = useState('hello')
+const onSetValue = useCallback((value) => setValue(value), [])
+```
+
+`App`이 가지고 있는 `value`를 F에 전달 하려는 경우에는 **App ➡️ A ➡️ B ➡️ F**의 순서로 흐르며, G 컴포넌트에 상태 업데이트 함수를 전달할 때도 **App ➡️ A ➡️ B ➡️ E ➡️ G** 와 같이 복잡한 단계를 여러 번 거쳐서 전달하게 됩니다.
+
+실제 프로젝트는 다루어야할 데이터가 더 많기 때문에, **유지보수성이 더욱 떨어지게 됩니다**.
+
+---
+
+# 🌊 Context API를 사용한 전역 상태 관리 흐름
+
+![Context API 상태관리](/static/images/context2.png)
+
+_Source: `VELOPERT.LOG`_
+
+위와 같은 문제점을 `Context API`로 해결이 가능합니다. `Context API`를 사용하여 `Context`를 만들어서 단 한번에 원하는 값을 받아와서 사용할 수 있습니다.
+
+## 실습 #1
+
+### 새 context 만들기
+
+```javascript
+import { createContext } from 'react'
+
+const ColorContext = createContext({ color: 'black' })
+
+export default ColorContext
+```
+
+### Consumer 사용하기
+
+```javascript
+import React from 'react'
+import ColorContext from '../contexts/color'
+
+const ColorBox = () => {
+  return (
+    <ColorContext.Consumer>
+      {(value) => (
+        <div
+          style={{
+            width: '64px',
+            height: '64px',
+            background: value.color,
+          }}
+        />
+      )}
+    </ColorContext.Consumer>
+  )
+}
+
+export default ColorBox
+```
+
+여기서 `Function as a child (Render Props)`는 컴포넌트의 `children`의 자리에 일반 `jsx `혹은 문자열이 아닌 함수를 전달하는 것입니다.
+
+### Provider
+
+```javascript
+import React from 'react'
+import ColorContext from '../contexts/color'
+
+const ColorBox = () => {
+  return (
+    <ColorContext.Consumer>
+      {(value) => (
+        <div
+          style={{
+            width: '64px',
+            height: '64px',
+            background: value.color,
+          }}
+        />
+      )}
+    </ColorContext.Consumer>
+  )
+}
+
+export default ColorBox
+```
+
+`provider`를 사용하면 `Context`의 `value`를 변경할 수 있습니다.
+
+---
+
+### 🔗 Reference
+
+[리액트 16.3 에 소개된 새로워진 Context API 파헤치기](https://velopert.com/3606)
