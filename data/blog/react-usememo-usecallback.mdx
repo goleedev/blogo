@@ -1,0 +1,50 @@
+---
+title: '🖌️ 리액트 useMemo와 useCallback이란'
+thumbSrc: '/static/images/react5.png'
+date: '2021-08-22'
+tags: ['FE', 'React']
+draft: false
+summary: '리액트 useMemo와 useCallback를 학습하며 정리한 자료에 대해 설명합니다.'
+images: ['/static/images/react5.png']
+authors: ['default']
+---
+
+# 📌 목차
+
+![React useMemo와 useCallback](/static/images/react5.png)
+
+- **📝 useMemo**
+
+- **🤙 useCallback**
+
+---
+
+# 📝 useMemo
+
+```javascript
+// 메모이제이션된 값을 반환합니다.
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b])
+```
+
+공식문서의 정의에서 **메모리제이션된 값을 반환한다**라는 문장이 핵심인데요. 위와 예시에처럼 하위 컴포넌츠가 상위 컴포넌트로부터 a와 b라는 두 개의 `props`를 전달 받는데, a와 b를 전달 받으면 **서로 다른 함수로 각각의 값을 가공 (또는 계산)한 새로운 값을 보여주는 역할**을 히게 됩니다. 이때, 하위 컴포넌트는 `props`로 넘겨 받는 **인자가 하나라도 변경되면 그때마다 렌더링**이되어야 하는데, 이러한 불필요한 렌더링은 이전에 계산된 값을 쓰면서 줄일 수 있습니다.
+
+---
+
+# 🤙 useCallback
+
+```javascript
+// 메모이제이션된 콜백을 반환합니다.
+const memoizedCallback = useCallback(() => {
+  doSomething(a, b)
+}, [a, b])
+```
+
+공식문서의 정의에서 **메모리제이션된 함수를 반환한다**라는 문장이 핵심인데요. 이는 컴포넌트가 렌더링 될 때마다 **내부에 선언되어 있던 표현식 (변수, 또다른 함수 등)도 매번 다시 선언되어 사용**되는데, 함수는 파라미터로 전달받은 **인자의 값이 변경될 때만 다시 실행**해주면 되기 때문에 **처음 마운트 될 때 한 번만 선언하고 이를 재사용**하면 됩니다.
+
+---
+
+### 🔗 References
+
+[useMemo](https://ko.reactjs.org/docs/hooks-reference.html#usememo)
+
+[useCallback](https://ko.reactjs.org/docs/hooks-reference.html#usecallback)
