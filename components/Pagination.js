@@ -6,7 +6,7 @@ export default function Pagination({ totalPages, currentPage }) {
 
   return (
     <div className="pt-6 pb-8 space-y-2 md:space-y-5">
-      <nav className="flex justify-between">
+      <nav className="flex justify-between text-semibold sm:text-sm">
         {!prevPage && (
           <button rel="previous" className="cursor-auto disabled:opacity-50" disabled={!prevPage}>
             이전
