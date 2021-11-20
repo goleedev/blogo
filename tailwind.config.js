@@ -142,8 +142,9 @@ module.exports = {
               },
             },
             blockquote: {
-              color: theme('colors.gray.100'),
-              borderLeftColor: theme('colors.gray.700'),
+              color: theme('colors.primary.700'),
+              backgroundColor: theme('colors.gray.200'),
+              borderLeftColor: theme('colors.primary.500'),
             },
           },
         },
