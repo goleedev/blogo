@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-
 class MyDocument extends Document {
   render() {
     return (
@@ -16,28 +15,25 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
             rel="stylesheet"
           />
-          <link
-            rel="apple-touch-icon"
-            sizes="76x76"
-            href="/public/static/favicons/apple-touch-icon.png"
-          />
+          <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
           <link
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href="/public/static/favicons/favicon-32x32.png"
+            href="/static/favicons/favicon-32x32.png"
           />
           <link
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href="/public/static/favicons/favicon-16x16.png"
+            href="/static/favicons/favicon-16x16.png"
           />
-          <link rel="manifest" href="/public/static/favicons/site.webmanifest" />
-          <link rel="alternate" type="application/rss+xml" href="/public/feed.xml" />
+          <link rel="manifest" href="/static/favicons/site.webmanifest" />
+          <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+          <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
           <script
-            async
             data-ad-client="ca-pub-8380443717444276"
+            async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
           />
         </Head>
