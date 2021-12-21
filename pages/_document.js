@@ -6,6 +6,16 @@ class MyDocument extends Document {
       <Html lang="ko">
         <Head>
           <meta name="theme-color" content="#000000" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+            rel="stylesheet"
+          />
           <link
             rel="apple-touch-icon"
             sizes="76x76"
