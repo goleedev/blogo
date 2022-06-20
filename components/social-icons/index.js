@@ -5,7 +5,7 @@ import Youtube from './youtube.svg'
 import Linkedin from './linkedin.svg'
 import Twitter from './twitter.svg'
 
-// Icons taken from: https://simpleicons.org/
+// Icons - https://simpleicons.org/
 
 const components = {
   mail: Mail,

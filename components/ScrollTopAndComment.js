@@ -21,6 +21,7 @@ const ScrollTopAndComment = () => {
   const handleScrollToComment = () => {
     document.getElementById('comment').scrollIntoView()
   }
+  
   return (
     <div className="fixed flex-col hidden gap-3 right-8 bottom-8 md:flex">
       <button
